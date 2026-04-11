@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#F5F1EC" />
+  <title>Desafio do Vestido 14D — Quiz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="app-header">
+    <div class="header-inner">
+      <button class="back-btn" id="backBtn" aria-label="Voltar" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <span class="brand">Desafio do Vestido</span>
+      <span class="header-section" id="headerSection"></span>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    </div>
+  </header>
+
+  <main class="app-main">
+
+    <!-- ===== TELA 0: SPLASH / ENGAJAMENTO ===== -->
+    <section class="screen active" data-screen="splash" data-progress="0" data-section="">
+      <div class="screen-inner center-content">
+        <div class="splash-badge">Teste de 2 minutos</div>
+        <h1 class="splash-title">Sua barriga n&atilde;o &eacute; gordura. &Eacute; outra coisa &mdash; e &eacute; por isso que nada funcionou at&eacute; agora.</h1>
+        <p class="splash-sub">Mais de 80% das mulheres que fazem dieta e n&atilde;o perdem barriga t&ecirc;m o mesmo padr&atilde;o. Esse teste identifica o seu.</p>
+        <div class="splash-img"><img src="assets/headline.png" alt="" loading="lazy" /></div>
+        <button class="cta-btn" data-next>Descobrir o meu padr&atilde;o agora</button>
+        <p class="splash-disclaimer">Ao continuar, voc&ecirc; concorda com nossos Termos de Servi&ccedil;o e Pol&iacute;tica de Privacidade.</p>
+      </div>
+    </section>
+
+    <!-- ===== Q1: IDADE ===== -->
+    <section class="screen" data-screen="q1" data-progress="4" data-section="Seu perfil">
+      <div class="screen-inner">
+        <h2 class="q-title">Primeiro, me conta: quantos anos voc&ecirc; tem?</h2>
+        <p class="q-justification">A faixa et&aacute;ria define qual das tr&ecirc;s origens do problema est&aacute; mais ativa no seu corpo.</p>
+        <div class="options-grid age-grid">
+          <button class="age-card" data-answer="q1" data-value="25-34" data-next>
+            <div class="age-img-wrap"><img src="assets/age-20.jpg" alt="25-34 anos" loading="lazy" /></div>
+            <span class="age-label">25&ndash;34 anos</span>
+          </button>
+          <button class="age-card" data-answer="q1" data-value="35-44" data-next>
+            <div class="age-img-wrap"><img src="assets/age-30.jpg" alt="35-44 anos" loading="lazy" /></div>
+            <span class="age-label">35&ndash;44 anos</span>
+          </button>
+          <button class="age-card" data-answer="q1" data-value="45-54" data-next>
+            <div class="age-img-wrap"><img src="assets/age-40.jpg" alt="45-54 anos" loading="lazy" /></div>
+            <span class="age-label">45&ndash;54 anos</span>
+          </button>
+          <button class="age-card" data-answer="q1" data-value="55+" data-next>
+            <div class="age-img-wrap"><img src="assets/age-50.jpg" alt="55+ anos" loading="lazy" /></div>
+            <span class="age-label">55+ anos</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Q2: SITUA&Ccedil;&Atilde;O ATUAL ===== -->
+    <section class="screen" data-screen="q2" data-progress="8" data-section="Seu perfil">
+      <div class="screen-inner">
+        <h2 class="q-title">Como voc&ecirc; descreveria sua situa&ccedil;&atilde;o hoje?</h2>
+        <div class="option-list">
+          <button class="option-row" data-answer="q2" data-value="faco-tudo-certo" data-next>
+            <span class="option-text">Fa&ccedil;o tudo certo e a barriga n&atilde;o sai</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q2" data-value="quase-desisti" data-next>
+            <span class="option-text">J&aacute; tentei tanto que quase desisti</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q2" data-value="sem-acreditar" data-next>
+            <span class="option-text">Ainda estou tentando, mas sem acreditar muito</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q2" data-value="resolver-de-vez" data-next>
+            <span class="option-text">Decidi que preciso resolver isso de vez</span>
+            <span class="option-check"></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Q3: BARRIGA VARIA ===== -->
+    <section class="screen" data-screen="q3" data-progress="12" data-section="Seu perfil">
+      <div class="screen-inner">
+        <h2 class="q-title">Voc&ecirc; j&aacute; percebeu que sua barriga varia ao longo do dia &mdash; menor de manh&atilde;, maior &agrave; tarde?</h2>
+        <p class="q-justification">Essa varia&ccedil;&atilde;o &eacute; um dos principais sinais do padr&atilde;o que estamos identificando.</p>
+        <div class="option-list">
+          <button class="option-row" data-answer="q3" data-value="sim-sempre" data-next>
+            <span class="option-text">Sim, sempre &mdash; &eacute; frustrante demais</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q3" data-value="sim-piora" data-next>
+            <span class="option-text">Sim, e piora muito depois de comer qualquer coisa</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q3" data-value="as-vezes" data-next>
+            <span class="option-text">&Agrave;s vezes, mas n&atilde;o entendo por qu&ecirc;</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q3" data-value="grande-sempre" data-next>
+            <span class="option-text">N&atilde;o, ela fica grande o tempo todo</span>
+            <span class="option-check"></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Q4: TENTATIVAS ANTERIORES ===== -->
+    <section class="screen" data-screen="q4" data-progress="16" data-section="Seu perfil">
+      <div class="screen-inner">
+        <h2 class="q-title">O que voc&ecirc; j&aacute; tentou pra resolver a barriga?</h2>
+        <p class="q-justification">Isso nos ajuda a entender por que os m&eacute;todos anteriores n&atilde;o chegaram na origem do problema.</p>
+        <div class="option-list">
+          <button class="option-row" data-answer="q4" data-value="dieta" data-next>
+            <span class="option-text">Dieta e corte de carboidrato</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q4" data-value="academia" data-next>
+            <span class="option-text">Academia, abdominais e exerc&iacute;cios</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q4" data-value="jejum" data-next>
+            <span class="option-text">Jejum intermitente e detox</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q4" data-value="tudo" data-next>
+            <span class="option-text">Tudo isso &mdash; sem resultado duradouro</span>
+            <span class="option-check"></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Q5: GORDURA VS INCHA&Ccedil;O ===== -->
+    <section class="screen" data-screen="q5" data-progress="20" data-section="Seu perfil">
+      <div class="screen-inner">
+        <h2 class="q-title">Voc&ecirc; j&aacute; perdeu peso em outras partes do corpo, mas a barriga ficou?</h2>
+        <div class="option-list">
+          <button class="option-row" data-answer="q5" data-value="sim-exato" data-next>
+            <span class="option-text">Sim, exatamente isso</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q5" data-value="rosto-pernas" data-next>
+            <span class="option-text">Sim &mdash; o rosto afinou, as pernas melhoraram, mas a barriga ficou</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q5" data-value="nenhum-lugar" data-next>
+            <span class="option-text">N&atilde;o consigo perder em lugar nenhum</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q5" data-value="perde-recupera" data-next>
+            <span class="option-text">Perco e recupero tudo sempre no mesmo lugar</span>
+            <span class="option-check"></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Q6: IMPACTO EMOCIONAL ===== -->
+    <section class="screen" data-screen="q6" data-progress="24" data-section="Seu perfil">
+      <div class="screen-inner">
+        <h2 class="q-title">Como essa barriga afeta a sua vida hoje?</h2>
+        <div class="option-list">
+          <button class="option-row" data-answer="q6" data-value="roupas" data-next>
+            <span class="option-text">Evito roupas que marquem o corpo</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q6" data-value="fotos" data-next>
+            <span class="option-text">Me sinto mal em fotos e evito eventos</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q6" data-value="autoestima" data-next>
+            <span class="option-text">Afeta minha autoestima e meu relacionamento</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q6" data-value="tudo" data-next>
+            <span class="option-text">Tudo isso ao mesmo tempo</span>
+            <span class="option-check"></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== BREAK 1: CONEX&Atilde;O + PROVA SOCIAL ===== -->
+    <section class="screen" data-screen="break1" data-progress="28" data-section="">
+      <div class="screen-inner">
+        <h2 class="break-headline">Se voc&ecirc; chegou at&eacute; aqui, provavelmente j&aacute; se perguntou mais de uma vez: <em>&ldquo;o que h&aacute; de errado comigo?&rdquo;</em></h2>
+
+        <div class="break-answer-box">
+          <span class="break-answer-icon">&#10005;</span>
+          <p class="break-answer">Nada. O problema nunca foi voc&ecirc;.</p>
+        </div>
+
+        <div class="break-points">
+          <div class="break-point">
+            <span class="break-point-icon">&#127858;</span>
+            <div>
+              <p class="break-point-label">Dieta</p>
+              <p class="break-point-desc">Criada para queimar excesso cal&oacute;rico</p>
+            </div>
+          </div>
+          <div class="break-point">
+            <span class="break-point-icon">&#127947;</span>
+            <div>
+              <p class="break-point-label">Exerc&iacute;cio</p>
+              <p class="break-point-desc">Criado para gastar energia</p>
+            </div>
+          </div>
+          <div class="break-point">
+            <span class="break-point-icon">&#9201;</span>
+            <div>
+              <p class="break-point-label">Jejum</p>
+              <p class="break-point-desc">Criado para criar janela de queima</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="break-conclusion">
+          <p><strong>Nenhum deles foi criado para tratar o que realmente est&aacute; na barriga</strong> da maioria das mulheres depois dos 30.</p>
+          <p>Elas usaram as ferramentas certas para o <strong>problema errado.</strong></p>
+        </div>
+
+        <!-- FERNANDA — ANTES E DEPOIS -->
+        <div class="break-testimonial-visual">
+          <div class="break-testimonial-img">
+            <img src="assets/fernanda.jpg" alt="Fernanda — Antes e Depois" loading="lazy" />
+          </div>
+          <div class="break-testimonial-content">
+            <div class="break-testimonial-header">
+              <p class="testimonial-name">Fernanda, 41 anos &mdash; S&atilde;o Paulo</p>
+              <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            </div>
+            <p class="testimonial-text">&ldquo;Fiz reeduca&ccedil;&atilde;o alimentar por dois anos. Perdi 6 kg, o rosto afinou, as pernas melhoraram &mdash; mas a barriga ficou igual. Achei que era o meu corpo mesmo, que n&atilde;o tinha jeito. S&oacute; depois entendi que eu estava tratando o problema errado o tempo todo.&rdquo;</p>
+          </div>
+        </div>
+
+        <p class="break-cta-text">Continue. As pr&oacute;ximas perguntas revelam exatamente o que est&aacute; acontecendo no seu caso.</p>
+        <button class="cta-btn" data-next>Entender o que est&aacute; acontecendo comigo</button>
+      </div>
+    </section>
+
+    <!-- ===== Q7: PESO ===== -->
+    <section class="screen" data-screen="q7" data-progress="32" data-section="Atividade">
+      <div class="screen-inner">
+        <h2 class="q-title">Qual &eacute; o seu peso aproximado hoje?</h2>
+        <p class="q-justification">Essencial para calibrar o protocolo correto para o seu biotipo.</p>
+        <div class="option-list">
+          <button class="option-row" data-answer="q7" data-value="ate-65" data-next>
+            <span class="option-text">At&eacute; 65 kg</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q7" data-value="65-80" data-next>
+            <span class="option-text">Entre 65 e 80 kg</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q7" data-value="80-95" data-next>
+            <span class="option-text">Entre 80 e 95 kg</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q7" data-value="95+" data-next>
+            <span class="option-text">Acima de 95 kg</span>
+            <span class="option-check"></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Q8: ALTURA ===== -->
+    <section class="screen" data-screen="q8" data-progress="36" data-section="Atividade">
+      <div class="screen-inner">
+        <h2 class="q-title">Qual &eacute; a sua altura?</h2>
+        <p class="q-justification">Junto com seu peso, define a estrat&eacute;gia de drenagem mais eficaz para voc&ecirc;.</p>
+        <div class="option-list">
+          <button class="option-row" data-answer="q8" data-value="ate-158" data-next>
+            <span class="option-text">At&eacute; 1,58 m</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q8" data-value="159-165" data-next>
+            <span class="option-text">Entre 1,59 e 1,65 m</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q8" data-value="166-172" data-next>
+            <span class="option-text">Entre 1,66 e 1,72 m</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q8" data-value="172+" data-next>
+            <span class="option-text">Acima de 1,72 m</span>
+            <span class="option-check"></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Q9: SINTOMAS ESPEC&Iacute;FICOS ===== -->
+    <section class="screen" data-screen="q9" data-progress="40" data-section="Estilo de vida">
+      <div class="screen-inner">
+        <h2 class="q-title">O que voc&ecirc; sente com mais frequ&ecirc;ncia na regi&atilde;o da barriga?</h2>
+        <div class="option-list">
+          <button class="option-row" data-answer="q9" data-value="inchaco" data-next>
+            <span class="option-text">Incha&ccedil;o e estufamento &mdash; mesmo comendo pouco</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q9" data-value="dura" data-next>
+            <span class="option-text">Barriga dura, dif&iacute;cil de afinar</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q9" data-value="peso" data-next>
+            <span class="option-text">Sensa&ccedil;&atilde;o de peso e press&atilde;o constante</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q9" data-value="tudo" data-next>
+            <span class="option-text">Tudo isso dependendo do dia</span>
+            <span class="option-check"></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Q10: ORIGEM HORMONAL ===== -->
+    <section class="screen" data-screen="q10" data-progress="44" data-section="Estilo de vida">
+      <div class="screen-inner">
+        <h2 class="q-title">Sua barriga piora em alguma fase do m&ecirc;s ou piorou depois de uma certa idade?</h2>
+        <div class="option-list">
+          <button class="option-row" data-answer="q10" data-value="ciclo" data-next>
+            <span class="option-text">Sim, muito &mdash; especialmente antes do ciclo</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q10" data-value="depois-35" data-next>
+            <span class="option-text">Piorou bastante depois dos 35 ou 40 anos</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q10" data-value="menopausa" data-next>
+            <span class="option-text">Estou na menopausa e ficou bem pior</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q10" data-value="sem-variacao" data-next>
+            <span class="option-text">Fica grande o tempo todo, sem varia&ccedil;&atilde;o clara</span>
+            <span class="option-check"></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Q11: TEMPO SOFRENDO ===== -->
+    <section class="screen" data-screen="q11" data-progress="48" data-section="Estilo de vida">
+      <div class="screen-inner">
+        <h2 class="q-title">H&aacute; quanto tempo voc&ecirc; tenta resolver essa barriga sem conseguir?</h2>
+        <div class="option-list">
+          <button class="option-row" data-answer="q11" data-value="meses" data-next>
+            <span class="option-text">Alguns meses</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q11" data-value="1-3-anos" data-next>
+            <span class="option-text">Entre 1 e 3 anos</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q11" data-value="3-5-anos" data-next>
+            <span class="option-text">Entre 3 e 5 anos</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q11" data-value="5+-anos" data-next>
+            <span class="option-text">Mais de 5 anos</span>
+            <span class="option-check"></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== BREAK 2: REVELA&Ccedil;&Atilde;O DO MECANISMO ===== -->
+    <section class="screen" data-screen="break2" data-progress="52" data-section="">
+      <div class="screen-inner">
+        <h2 class="break-headline">Existe uma raz&atilde;o espec&iacute;fica pela qual a barriga resiste a tudo.</h2>
+
+        <p class="break-intro-text">Depois dos 30, a regi&atilde;o abdominal se torna o principal alvo do corpo para acumular <strong>tr&ecirc;s coisas ao mesmo tempo:</strong></p>
+
+        <div class="mechanism-cards">
+          <div class="mechanism-card mechanism-gas">
+            <span class="mechanism-icon">&#129531;</span>
+            <h4>G&aacute;s</h4>
+            <p>Produzido pela fermenta&ccedil;&atilde;o intestinal</p>
+          </div>
+          <div class="mechanism-card mechanism-liquid">
+            <span class="mechanism-icon">&#128167;</span>
+            <h4>L&iacute;quido</h4>
+            <p>Retido por sinal hormonal</p>
+          </div>
+          <div class="mechanism-card mechanism-inflammation">
+            <span class="mechanism-icon">&#128293;</span>
+            <h4>Res&iacute;duos inflamat&oacute;rios</h4>
+            <p>Que o sistema linf&aacute;tico n&atilde;o consegue drenar</p>
+          </div>
+        </div>
+
+        <div class="mechanism-comparison">
+          <div class="mechanism-not">
+            <span class="mechanism-x">&#10005;</span>
+            <span>N&atilde;o &eacute; gordura cal&oacute;rica</span>
+          </div>
+          <div class="mechanism-yes">
+            <span class="mechanism-ok">&#10003;</span>
+            <span>&Eacute; g&aacute;s, l&iacute;quido e inflama&ccedil;&atilde;o</span>
+          </div>
+        </div>
+
+        <div class="mechanism-metaphor">
+          <p>Quando essas tr&ecirc;s coisas se instalam juntas, a barriga se comporta como uma <strong>esponja encharcada por dentro</strong> &mdash; ela infla, endurece e resiste.</p>
+          <p class="mechanism-punch">D&eacute;ficit cal&oacute;rico n&atilde;o drena esponja.</p>
+        </div>
+
+        <!-- IMAGEM EFEITO ESPONJA -->
+        <div class="mechanism-image">
+          <img src="assets/efeito-esponja.jpg" alt="Efeito Esponja Abdominal — antes e depois" loading="lazy" />
+        </div>
+
+        <div class="mechanism-name-box">
+          <p class="mechanism-name">Isso tem um nome:</p>
+          <h3 class="mechanism-name-big">Efeito Esponja Abdominal</h3>
+        </div>
+
+        <p class="break-intro-text">&Eacute; exatamente por isso que tudo que voc&ecirc; tentou funcionou em outras partes do corpo &mdash; <strong>mas n&atilde;o ali.</strong></p>
+
+        <p class="break-cta-text">Continue. As pr&oacute;ximas perguntas identificam qual das tr&ecirc;s origens est&aacute; mais ativa no seu caso.</p>
+        <button class="cta-btn" data-next>Identificar minha origem</button>
+      </div>
+    </section>
+
+    <!-- ===== Q12: ORIGEM DOMINANTE ===== -->
+    <section class="screen" data-screen="q12" data-progress="56" data-section="Nutri&ccedil;&atilde;o">
+      <div class="screen-inner">
+        <h2 class="q-title">Qual dessas situa&ccedil;&otilde;es descreve melhor o que voc&ecirc; vive?</h2>
+        <div class="option-list">
+          <button class="option-row" data-answer="q12" data-value="gas" data-next>
+            <span class="option-text">Como pouco e fico estufada &mdash; parece que o ar n&atilde;o sai</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q12" data-value="liquido" data-next>
+            <span class="option-text">Retenho muito l&iacute;quido &mdash; incha&ccedil;o que vai e volta</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q12" data-value="linfatico" data-next>
+            <span class="option-text">Meu corpo parece que n&atilde;o elimina nada &mdash; fico pesada</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q12" data-value="tres" data-next>
+            <span class="option-text">Sinto os tr&ecirc;s ao mesmo tempo</span>
+            <span class="option-check"></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Q13: FERMENTA&Ccedil;&Atilde;O ===== -->
+    <section class="screen" data-screen="q13" data-progress="60" data-section="Nutri&ccedil;&atilde;o">
+      <div class="screen-inner">
+        <h2 class="q-title">Voc&ecirc; j&aacute; comeu algo saud&aacute;vel e ficou com a barriga maior do que antes de comer?</h2>
+        <div class="option-list">
+          <button class="option-row" data-answer="q13" data-value="constantemente" data-next>
+            <span class="option-text">Sim, constantemente &mdash; me desespero com isso</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q13" data-value="alguns-alimentos" data-next>
+            <span class="option-text">Sim, com alguns alimentos espec&iacute;ficos</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q13" data-value="as-vezes" data-next>
+            <span class="option-text">&Agrave;s vezes, sem entender o motivo</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q13" data-value="nao" data-next>
+            <span class="option-text">N&atilde;o, minha barriga &eacute; grande independente do que como</span>
+            <span class="option-check"></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== BREAK 3: ARGUMENTO L&Oacute;GICO ===== -->
+    <section class="screen" data-screen="break3" data-progress="64" data-section="">
+      <div class="screen-inner">
+        <h2 class="break-headline">A l&oacute;gica do fracasso dos outros m&eacute;todos fica clara:</h2>
+
+        <div class="failure-cards">
+          <div class="failure-card">
+            <div class="failure-card-top">
+              <span class="failure-icon">&#127858;</span>
+              <span class="failure-method">Dieta</span>
+            </div>
+            <p class="failure-did">Reduziu caloria</p>
+            <div class="failure-but">
+              <span class="failure-x">&#10005;</span>
+              <span>A esponja continuou encharcada. <strong>A barriga ficou.</strong></span>
+            </div>
+          </div>
+          <div class="failure-card">
+            <div class="failure-card-top">
+              <span class="failure-icon">&#127947;</span>
+              <span class="failure-method">Abdominais</span>
+            </div>
+            <p class="failure-did">O m&uacute;sculo fortaleceu</p>
+            <div class="failure-but">
+              <span class="failure-x">&#10005;</span>
+              <span>A esponja continuou ali em cima. <strong>A barriga ficou.</strong></span>
+            </div>
+          </div>
+          <div class="failure-card">
+            <div class="failure-card-top">
+              <span class="failure-icon">&#9201;</span>
+              <span class="failure-method">Jejum</span>
+            </div>
+            <p class="failure-did">Queimou gordura cal&oacute;rica</p>
+            <div class="failure-but">
+              <span class="failure-x">&#10005;</span>
+              <span>N&atilde;o drena esponja. <strong>A barriga ficou.</strong></span>
+            </div>
+          </div>
+          <div class="failure-card">
+            <div class="failure-card-top">
+              <span class="failure-icon">&#127861;</span>
+              <span class="failure-method">Ch&aacute; detox</span>
+            </div>
+            <p class="failure-did">Aliviou o sintoma por 1 dia</p>
+            <div class="failure-but">
+              <span class="failure-x">&#10005;</span>
+              <span>A esponja voltou a encharcar. <strong>A barriga ficou.</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="break-conclusion-box">
+          <p><strong>N&atilde;o foi falta de esfor&ccedil;o.</strong></p>
+          <p>Foi ferramenta errada para problema errado.</p>
+        </div>
+
+        <!-- JULIANA — ANTES E DEPOIS -->
+        <div class="break-testimonial-visual">
+          <div class="break-testimonial-img">
+            <img src="assets/juliana.jpg" alt="Juliana — Antes e Depois" loading="lazy" />
+          </div>
+          <div class="break-testimonial-content">
+            <div class="break-testimonial-header">
+              <p class="testimonial-name">Juliana, 38 anos &mdash; Belo Horizonte</p>
+              <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            </div>
+            <p class="testimonial-text">&ldquo;Passei 4 anos fazendo de tudo. Academia todo dia, jejum 16/8, low carb, ch&aacute; de ora-pro-n&oacute;bis, berberina. Perdi peso mas a barriga ficou dura e grande como sempre. Quando entendi o que realmente estava ali dentro, tudo fez sentido.&rdquo;</p>
+          </div>
+        </div>
+
+        <div class="break-conclusion-box" style="background:var(--success-bg);">
+          <p>Esponja encharcada n&atilde;o desaparece com d&eacute;ficit cal&oacute;rico.</p>
+          <p><strong>Ela drena</strong> &mdash; quando voc&ecirc; aplica o protocolo certo.</p>
+        </div>
+
+        <button class="cta-btn" data-next>Ver o que funciona para mim</button>
+      </div>
+    </section>
+
+    <!-- ===== Q14: QUANTO QUER PERDER ===== -->
+    <section class="screen" data-screen="q14" data-progress="68" data-section="Metas">
+      <div class="screen-inner">
+        <h2 class="q-title">Quanto voc&ecirc; quer perder na barriga nos pr&oacute;ximos 14 dias?</h2>
+        <p class="q-justification">Esse n&uacute;mero define qual fase do protocolo voc&ecirc; vai precisar priorizar.</p>
+        <div class="option-list">
+          <button class="option-row" data-answer="q14" data-value="ate-5cm" data-next>
+            <span class="option-text">At&eacute; 5 cm &mdash; quero s&oacute; desinflar de vez</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q14" data-value="5-10cm" data-next>
+            <span class="option-text">Entre 5 e 10 cm &mdash; quero sentir diferen&ccedil;a real</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q14" data-value="10cm+" data-next>
+            <span class="option-text">Mais de 10 cm &mdash; preciso de uma mudan&ccedil;a grande</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q14" data-value="nao-sei" data-next>
+            <span class="option-text">N&atilde;o sei &mdash; quero s&oacute; ver resultado onde nunca vi</span>
+            <span class="option-check"></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Q15: ROUPA GUARDADA ===== -->
+    <section class="screen" data-screen="q15" data-progress="72" data-section="Metas">
+      <div class="screen-inner">
+        <h2 class="q-title">Voc&ecirc; tem alguma roupa guardada esperando o dia que vai emagrecer?</h2>
+        <div class="option-list">
+          <button class="option-row" data-answer="q15" data-value="varias" data-next>
+            <span class="option-text">Sim, v&aacute;rias &mdash; um arm&aacute;rio inteiro esperando</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q15" data-value="uma-peca" data-next>
+            <span class="option-text">Sim, uma pe&ccedil;a espec&iacute;fica que quero muito usar</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q15" data-value="joguei-fora" data-next>
+            <span class="option-text">J&aacute; joguei tudo fora de frustra&ccedil;&atilde;o</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q15" data-value="paro-comprar" data-next>
+            <span class="option-text">Paro de comprar o que quero por causa disso</span>
+            <span class="option-check"></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Q16: TRANSFORMA&Ccedil;&Atilde;O EMOCIONAL ===== -->
+    <section class="screen" data-screen="q16" data-progress="76" data-section="Metas">
+      <div class="screen-inner">
+        <h2 class="q-title">O que voc&ecirc; mais quer sentir quando resolver a barriga?</h2>
+        <div class="option-list">
+          <button class="option-row" data-answer="q16" data-value="orgulho" data-next>
+            <span class="option-text">Orgulho do pr&oacute;prio corpo &mdash; finalmente</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q16" data-value="desejada" data-next>
+            <span class="option-text">Me sentir desejada e atraente de novo</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q16" data-value="parar-esconder" data-next>
+            <span class="option-text">Parar de me esconder em fotos e evitar espelhos</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q16" data-value="controle" data-next>
+            <span class="option-text">Sentir que tenho controle do meu pr&oacute;prio corpo</span>
+            <span class="option-check"></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Q17: TEMPO DISPON&Iacute;VEL ===== -->
+    <section class="screen" data-screen="q17" data-progress="80" data-section="Metas">
+      <div class="screen-inner">
+        <h2 class="q-title">Quanto tempo voc&ecirc; consegue dedicar por dia para cuidar do seu corpo?</h2>
+        <div class="option-list">
+          <button class="option-row" data-answer="q17" data-value="20min" data-next>
+            <span class="option-text">At&eacute; 20 minutos &mdash; minha rotina &eacute; corrida</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q17" data-value="20-40min" data-next>
+            <span class="option-text">Entre 20 e 40 minutos</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q17" data-value="tenho-tempo" data-next>
+            <span class="option-text">Tenho tempo &mdash; o que falta &eacute; o m&eacute;todo certo</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q17" data-value="imprevisivel" data-next>
+            <span class="option-text">Minha rotina &eacute; imprevis&iacute;vel &mdash; precisa ser flex&iacute;vel</span>
+            <span class="option-check"></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Q18: CREN&Ccedil;A NO MECANISMO ===== -->
+    <section class="screen" data-screen="q18" data-progress="84" data-section="Metas">
+      <div class="screen-inner">
+        <h2 class="q-title">Agora que voc&ecirc; entendeu o Efeito Esponja Abdominal, faz sentido por que nada funcionou antes?</h2>
+        <div class="option-list">
+          <button class="option-row" data-answer="q18" data-value="total" data-next>
+            <span class="option-text">Faz total sentido &mdash; sempre senti que era outra coisa</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q18" data-value="nunca-vi" data-next>
+            <span class="option-text">Faz sentido &mdash; nunca tinha visto explicado assim</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q18" data-value="duvidas" data-next>
+            <span class="option-text">Ainda tenho d&uacute;vidas, mas quero entender melhor</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q18" data-value="raiva" data-next>
+            <span class="option-text">Sim &mdash; e estou com raiva de n&atilde;o ter sabido antes</span>
+            <span class="option-check"></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Q19: COMPROMETIMENTO ===== -->
+    <section class="screen" data-screen="q19" data-progress="88" data-section="Metas">
+      <div class="screen-inner">
+        <h2 class="q-title">Se voc&ecirc; tivesse um protocolo completo, organizado dia a dia, que trata as tr&ecirc;s origens ao mesmo tempo &mdash; voc&ecirc; seguiria por 14 dias?</h2>
+        <div class="option-list">
+          <button class="option-row" data-answer="q19" data-value="sem-duvida" data-next>
+            <span class="option-text">Sim, sem d&uacute;vida &mdash; s&oacute; precisava saber o que fazer</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q19" data-value="se-resultado" data-next>
+            <span class="option-text">Sim, se eu sentir resultado nos primeiros dias</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q19" data-value="cansada" data-next>
+            <span class="option-text">Quero acreditar que sim &mdash; estou cansada de me decepcionar</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q19" data-value="ja-devia" data-next>
+            <span class="option-text">Sim &mdash; e j&aacute; devia ter encontrado isso antes</span>
+            <span class="option-check"></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Q20: OBJE&Ccedil;&Atilde;O FINAL ===== -->
+    <section class="screen" data-screen="q20" data-progress="92" data-section="Metas">
+      <div class="screen-inner">
+        <h2 class="q-title">O que te impediria de come&ccedil;ar hoje?</h2>
+        <div class="option-list">
+          <button class="option-row" data-answer="q20" data-value="medo" data-next>
+            <span class="option-text">Medo de ser mais uma promessa que n&atilde;o funciona</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q20" data-value="disciplina" data-next>
+            <span class="option-text">N&atilde;o sei se tenho disciplina suficiente</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q20" data-value="nada" data-next>
+            <span class="option-text">Nada &mdash; estou pronta para come&ccedil;ar de verdade</span>
+            <span class="option-check"></span>
+          </button>
+          <button class="option-row" data-answer="q20" data-value="entender" data-next>
+            <span class="option-text">Preciso entender melhor antes de decidir</span>
+            <span class="option-check"></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== BREAK 4: DIAGN&Oacute;STICO FINAL ===== -->
+    <section class="screen" data-screen="break4" data-progress="95" data-section="">
+      <div class="screen-inner">
+        <div class="break-card break-card-dark">
+          <h3 class="break-card-title" style="color:#fff;">Seu perfil est&aacute; identificado.</h3>
+          <p>O que as suas respostas mostram &eacute; claro: voc&ecirc; n&atilde;o tem um problema de disciplina. N&atilde;o tem um problema de for&ccedil;a de vontade. N&atilde;o tem um problema de metabolismo.</p>
+          <p><strong>Voc&ecirc; tem o Efeito Esponja Abdominal instalado &mdash; e ele nunca foi tratado na origem certa.</strong></p>
+          <p>&Eacute; por isso que a barriga ficou depois de cada dieta. &Eacute; por isso que ela voltou depois de cada esfor&ccedil;o. &Eacute; por isso que voc&ecirc; fez tudo certo e n&atilde;o viu resultado onde mais precisava.</p>
+          <p>Existe uma forma de tratar as tr&ecirc;s origens ao mesmo tempo. Em 14 dias. Sem academia, sem passar fome, sem sofrimento.</p>
+          <p><strong>O seu diagn&oacute;stico completo e o pr&oacute;ximo passo est&atilde;o na pr&oacute;xima p&aacute;gina.</strong></p>
+        </div>
+        <button class="cta-btn" data-next>Ver meu diagn&oacute;stico completo</button>
+      </div>
+    </section>
+
+    <!-- ===== TELA LOADING ===== -->
+    <section class="screen" data-screen="loading" data-progress="97" data-section="">
+      <div class="screen-inner center-content loading-screen">
+        <h2 class="loading-title">Analisando suas respostas...</h2>
+        <div class="loading-steps">
+          <div class="loading-step" data-step="1">
+            <div class="loading-step-header">
+              <span class="loading-step-text">Seu perfil</span>
+              <span class="loading-step-pct">0%</span>
+            </div>
+            <div class="loading-bar"><div class="loading-bar-fill"></div></div>
+          </div>
+          <div class="loading-step" data-step="2">
+            <div class="loading-step-header">
+              <span class="loading-step-text">Atividade</span>
+              <span class="loading-step-pct">0%</span>
+            </div>
+            <div class="loading-bar"><div class="loading-bar-fill"></div></div>
+          </div>
+          <div class="loading-step" data-step="3">
+            <div class="loading-step-header">
+              <span class="loading-step-text">Estilo de vida e h&aacute;bitos</span>
+              <span class="loading-step-pct">0%</span>
+            </div>
+            <div class="loading-bar"><div class="loading-bar-fill"></div></div>
+          </div>
+          <div class="loading-step" data-step="4">
+            <div class="loading-step-header">
+              <span class="loading-step-text">Nutri&ccedil;&atilde;o</span>
+              <span class="loading-step-pct">0%</span>
+            </div>
+            <div class="loading-bar"><div class="loading-bar-fill"></div></div>
+          </div>
+          <div class="loading-step" data-step="5">
+            <div class="loading-step-header">
+              <span class="loading-step-text">Metas de peso</span>
+              <span class="loading-step-pct">0%</span>
+            </div>
+            <div class="loading-bar"><div class="loading-bar-fill"></div></div>
+          </div>
+        </div>
+        <div class="loading-badge">
+          <span class="loading-badge-icon">&#127815;</span>
+          <span>Criando seu plano personalizado de Drenagem Abdominal</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TELA RASPADINHA ===== -->
+    <section class="screen" data-screen="scratch" data-progress="98" data-section="">
+      <div class="screen-inner center-content">
+        <h2 class="scratch-title">Raspe para receber um presente especial!</h2>
+        <p class="scratch-sub">Queremos que voc&ecirc; comece sua jornada com uma agrad&aacute;vel surpresa.</p>
+        <div class="scratch-card-wrapper">
+          <div class="scratch-reward">
+            <p class="scratch-discount">50<span class="scratch-percent">%</span></p>
+            <p class="scratch-discount-label">desconto</p>
+            <p class="scratch-discount-desc">Desafio do Vestido 14D</p>
+            <div class="scratch-divider"></div>
+            <div class="scratch-coupon">
+              <p class="scratch-coupon-code" id="scratchCouponCode"></p>
+            </div>
+          </div>
+          <canvas id="scratchCanvas" class="scratch-canvas"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TELA OFERTA COMPLETA ===== -->
+    <section class="screen" data-screen="offer" data-progress="100" data-section="">
+      <div class="screen-inner offer-screen">
+
+        <!-- BARRA URG&Ecirc;NCIA TOPO -->
+        <div class="urgency-bar">
+          <span>&#9888;&#65039; Vagas abertas por tempo limitado &mdash; protocolo com acesso imediato</span>
+        </div>
+
+        <!-- TIMER -->
+        <div class="timer-bar">
+          <span>O desconto &eacute; reservado para:</span>
+          <div class="timer-digits" id="timerDisplay">
+            <span class="timer-num" id="timerMin">10</span>
+            <span class="timer-sep">:</span>
+            <span class="timer-num" id="timerSec">00</span>
+          </div>
+        </div>
+
+        <!-- CUPOM APLICADO -->
+        <div class="coupon-applied">
+          <span class="coupon-check">&#10003;</span>
+          <span>Seu c&oacute;digo promocional foi aplicado!</span>
+        </div>
+
+        <!-- DIAGN&Oacute;STICO PERSONALIZADO -->
+        <div class="diagnosis-card" id="diagnosisCard">
+          <h2 class="offer-h2">Seu diagn&oacute;stico est&aacute; pronto</h2>
+          <p class="diagnosis-sub">Com base nas suas respostas, identificamos exatamente o que est&aacute; travando a sua barriga &mdash; e por que nada funcionou at&eacute; hoje</p>
+          <div class="diagnosis-findings">
+            <p class="diagnosis-findings-title">&#128270; O que suas respostas revelaram:</p>
+            <div class="diagnosis-text" id="diagnosisText"></div>
+          </div>
+          <p class="diagnosis-line">Esse padr&atilde;o tem um nome. E agora voc&ecirc; vai entender, pela primeira vez, o que realmente est&aacute; acontecendo dentro do seu corpo.</p>
+        </div>
+
+        <!-- CONFIRMA&Ccedil;&Atilde;O DO PROBLEMA -->
+        <div class="section-block">
+          <h2 class="offer-h2">Sua barriga n&atilde;o &eacute; gordura. Nunca foi.</h2>
+          <p class="offer-text">O que as suas respostas confirmam &eacute; o mesmo padr&atilde;o que eu identifico h&aacute; 13 anos de consult&oacute;rio: mulheres disciplinadas, dedicadas, que fazem absolutamente tudo certo &mdash; e continuam com a barriga no mesmo lugar.</p>
+          <p class="offer-text">N&atilde;o porque faltou esfor&ccedil;o. Porque <strong>sobrou o m&eacute;todo errado.</strong></p>
+          <p class="offer-text">Depois dos 30, a regi&atilde;o abdominal se torna o principal dep&oacute;sito do corpo para tr&ecirc;s coisas que nenhuma dieta foi feita para tratar:</p>
+        </div>
+
+        <!-- 3 ORIGENS -->
+        <div class="origins-grid">
+          <div class="origin-card origin-fermentative">
+            <span class="origin-icon">&#129531;</span>
+            <h4>Origem Fermentativa</h4>
+            <p>Bact&eacute;rias no intestino fermentam os alimentos &mdash; mesmo os saud&aacute;veis &mdash; e produzem g&aacute;s que fica preso na regi&atilde;o abdominal. &Eacute; por isso que voc&ecirc; come uma salada e a barriga fica maior do que antes de comer.</p>
+          </div>
+          <div class="origin-card origin-hormonal">
+            <span class="origin-icon">&#128167;</span>
+            <h4>Origem Hormonal</h4>
+            <p>Depois dos 30, os horm&ocirc;nios mandam o corpo reter l&iacute;quido especificamente na regi&atilde;o abdominal como mecanismo de defesa. &Eacute; por isso que a barriga varia ao longo do m&ecirc;s.</p>
+          </div>
+          <div class="origin-card origin-lymphatic">
+            <span class="origin-icon">&#128260;</span>
+            <h4>Origem Linf&aacute;tica</h4>
+            <p>O sistema linf&aacute;tico &eacute; o sistema de drenagem do corpo. Quando ele fica lento, tudo que deveria sair fica acumulado. Onde fica? Na barriga.</p>
+          </div>
+        </div>
+
+        <!-- POR QUE TUDO FALHOU -->
+        <div class="failure-table">
+          <h3 class="failure-title">Agora a l&oacute;gica do fracasso fica clara:</h3>
+          <table>
+            <thead>
+              <tr><th>O que voc&ecirc; tentou</th><th>O que resolve</th><th>O que n&atilde;o resolve</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Dieta e d&eacute;ficit cal&oacute;rico</td><td>Gordura de excesso</td><td class="fail-cell">Esponja encharcada</td></tr>
+              <tr><td>Abdominais e academia</td><td>M&uacute;sculo</td><td class="fail-cell">G&aacute;s, l&iacute;quido, inflama&ccedil;&atilde;o</td></tr>
+              <tr><td>Jejum convencional</td><td>Queima cal&oacute;rica</td><td class="fail-cell">Reten&ccedil;&atilde;o linf&aacute;tica e hormonal</td></tr>
+              <tr><td>Ch&aacute;s e detox</td><td>Sintoma por um dia</td><td class="fail-cell">Origem do incha&ccedil;o</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- VIRADA EMOCIONAL -->
+        <div class="section-block section-highlight">
+          <h2 class="offer-h2">Esponja encharcada drena.</h2>
+          <p class="offer-text">Quando voc&ecirc; aplica o protocolo certo, na sequ&ecirc;ncia certa, atacando as tr&ecirc;s origens ao mesmo tempo &mdash; a esponja come&ccedil;a a esvaziar. E quando ela esvazia, a barriga some de um jeito que parece imposs&iacute;vel pra quem nunca entendeu o que estava ali dentro.</p>
+          <p class="offer-text">N&atilde;o &eacute; magia. &Eacute; simplesmente a primeira vez que o <strong>problema certo</strong> est&aacute; sendo tratado.</p>
+          <p class="offer-text">&Eacute; exatamente isso que o <strong>Desafio do Vestido 14D</strong> faz.</p>
+        </div>
+
+        <!-- APRESENTA&Ccedil;&Atilde;O DA SOLU&Ccedil;&Atilde;O -->
+        <div class="section-block">
+          <h2 class="offer-h2">O Desafio do Vestido 14D</h2>
+          <p class="offer-sub">O protocolo de drenagem abdominal completo &mdash; desenvolvido para tratar as tr&ecirc;s origens do Efeito Esponja Abdominal em 14 dias consecutivos</p>
+          <p class="offer-text">N&atilde;o &eacute; uma dieta. N&atilde;o &eacute; mais um treino. &Eacute; um protocolo completo, organizado dia a dia, com tudo que voc&ecirc; precisa fazer estruturado passo a passo.</p>
+        </div>
+
+        <!-- 5 ELEMENTOS — CARDS COM IMAGEM -->
+        <div class="elements-list">
+          <div class="element-v-card reveal-on-scroll">
+            <div class="element-v-img"><img src="assets/cardapio.jpg" alt="Card&aacute;pio Antifermentativo" loading="lazy" /></div>
+            <div class="element-v-body">
+              <h4 class="element-v-title">Card&aacute;pio Antifermentativo 14 Dias</h4>
+              <p>Card&aacute;pio completo + lista de compras pronta. Caf&eacute;, almo&ccedil;o, jantar e sobremesa.</p>
+              <span class="element-value">R$ 197</span>
+            </div>
+          </div>
+          <div class="element-v-card reveal-on-scroll">
+            <div class="element-v-img"><img src="assets/bebida.jpg" alt="A Bebida que Seca" loading="lazy" /></div>
+            <div class="element-v-body">
+              <h4 class="element-v-title">A Bebida que Seca</h4>
+              <p>F&oacute;rmula exclusiva que reduz fermenta&ccedil;&atilde;o e ativa o sistema linf&aacute;tico. Ingredientes simples.</p>
+              <span class="element-value">R$ 97</span>
+            </div>
+          </div>
+          <div class="element-v-card reveal-on-scroll">
+            <div class="element-v-img"><img src="assets/movimento.jpg" alt="Movimento Linf&aacute;tico" loading="lazy" /></div>
+            <div class="element-v-body">
+              <h4 class="element-v-title">Movimento Linf&aacute;tico 20 min</h4>
+              <p>Sem impacto, em casa, qualquer condi&ccedil;&atilde;o f&iacute;sica. Estimula drenagem abdominal.</p>
+              <span class="element-value">R$ 147</span>
+            </div>
+          </div>
+          <div class="element-v-card reveal-on-scroll">
+            <div class="element-v-img"><img src="assets/jejum.jpg" alt="Protocolo de Jejum" loading="lazy" /></div>
+            <div class="element-v-body">
+              <h4 class="element-v-title">Protocolo de Jejum Combinado</h4>
+              <p>Calibrado para o corpo feminino. Sem fome excessiva, sem efeito rebote.</p>
+              <span class="element-value">R$ 97</span>
+            </div>
+          </div>
+          <div class="element-v-card reveal-on-scroll">
+            <div class="element-v-img"><img src="assets/audio-camila.jpg" alt="&Aacute;udio Di&aacute;rio Camila" loading="lazy" /></div>
+            <div class="element-v-body">
+              <h4 class="element-v-title">&Aacute;udio Di&aacute;rio com a Camila</h4>
+              <p>14 &aacute;udios, um por dia. Passo a passo do que fazer, do come&ccedil;o ao fim.</p>
+              <span class="element-value">R$ 197</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- LINHA DO TEMPO 14 DIAS -->
+        <div class="timeline-section">
+          <h2 class="offer-h2">O que acontece no seu corpo durante os 14 dias</h2>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-marker">&#128197;</div>
+              <div>
+                <h4>Dias 1 a 3 &mdash; A esponja para de encharcar</h4>
+                <p>O g&aacute;s preso come&ccedil;a a ser eliminado. O incha&ccedil;o da tarde diminui. As roupas come&ccedil;am a sentar diferente.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-marker">&#128197;</div>
+              <div>
+                <h4>Dias 4 a 7 &mdash; O sistema linf&aacute;tico acorda</h4>
+                <p>O l&iacute;quido retido come&ccedil;a a ser drenado. A barriga come&ccedil;a a afinar de um jeito diferente &mdash; n&atilde;o &eacute; peso saindo, &eacute; volume saindo.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-marker">&#128197;</div>
+              <div>
+                <h4>Dias 8 a 14 &mdash; O sinal hormonal &eacute; interrompido</h4>
+                <p>O corpo para de mandar l&iacute;quido para a regi&atilde;o abdominal. A esponja est&aacute; quase vazia. &Eacute; aqui que as mulheres olham no espelho e n&atilde;o acreditam.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RESULTADOS REAIS — SÓ FOTOS -->
+        <h2 class="offer-h2">Resultados que nos enchem de orgulho</h2>
+
+        <!-- ANTES/DEPOIS GALERIA -->
+        <div class="proof-gallery">
+          <div class="proof-img"><img src="assets/fernanda.jpg" alt="Fernanda — Antes e Depois" loading="lazy" /></div>
+          <div class="proof-img"><img src="assets/juliana.jpg" alt="Juliana — Antes e Depois" loading="lazy" /></div>
+          <div class="proof-img"><img src="assets/prova-social5.jpg" alt="Resultado — Antes e Depois" loading="lazy" /></div>
+          <div class="proof-img"><img src="assets/prova-social6.jpg" alt="Resultado — Antes e Depois" loading="lazy" /></div>
+          <div class="proof-img"><img src="assets/prova-social7.jpg" alt="Resultado — Antes e Depois" loading="lazy" /></div>
+        </div>
+
+        <!-- AUTORIDADE -->
+        <div class="authority-section">
+          <h3 class="offer-h3">Quem desenvolveu esse protocolo</h3>
+          <div class="authority-photo">
+            <img src="assets/camila.jpg" alt="Camila Moura — Nutricionista" loading="lazy" />
+          </div>
+          <p class="offer-text"><strong>Camila Moura</strong>, nutricionista com 13 anos de consult&oacute;rio especializado em emagrecimento feminino. Mais de 400 mil mulheres acompanham seu trabalho.</p>
+          <p class="offer-text">O Efeito Esponja Abdominal foi identificado dentro da realidade de centenas de pacientes que faziam tudo certo e n&atilde;o viam resultado na barriga. O protocolo foi constru&iacute;do ajuste a ajuste, resultado a resultado.</p>
+        </div>
+
+        <!-- PRICING CARDS -->
+        <div class="pricing-section">
+          <h2 class="offer-h2">Escolha o seu plano</h2>
+
+          <!-- CARD 1: DESAFIO COMPLETO -->
+          <div class="mega-card mega-card-featured">
+            <div class="mega-badge">MAIS POPULAR</div>
+            <h3 class="mega-title">Desafio Completo 14D</h3>
+            <p class="mega-duration">14 dias de protocolo + todos os b&ocirc;nus</p>
+
+            <ul class="mega-bullets">
+              <li>&#10003; Card&aacute;pio Antifermentativo 14 Dias completo</li>
+              <li>&#10003; A Bebida que Seca &mdash; f&oacute;rmula exclusiva</li>
+              <li>&#10003; Movimento Linf&aacute;tico 20 min/dia</li>
+              <li>&#10003; Protocolo de Jejum Combinado</li>
+              <li>&#10003; 14 &Aacute;udios Di&aacute;rios com a Camila</li>
+              <li>&#10003; Lista de Compras Semanal</li>
+              <li>&#10003; Guia: Alimentos que Incham vs Secam</li>
+              <li>&#10003; Grupo Exclusivo de Apoio &mdash; 30 dias</li>
+            </ul>
+
+            <div class="mega-price-block">
+              <p class="mega-anchor">Valor real de tudo isso: <span class="mega-anchor-old">R$ 735</span></p>
+              <p class="mega-price-label">Hoje por apenas:</p>
+              <p class="mega-price">R$ 67</p>
+              <p class="mega-installment">ou 12x de R$ 6,70</p>
+              <p class="mega-savings">Voc&ecirc; economiza R$ 668 &#127881;</p>
+            </div>
+
+            <a href="https://lastlink.com/p/C0FDC7497/checkout-payment/" class="cta-btn cta-main" data-checkout="67">QUERO COME&Ccedil;AR AGORA</a>
+            <p class="secure-line">&#128274; Compra 100% segura &middot; Acesso imediato &middot; 7 dias de garantia</p>
+          </div>
+
+          <!-- CARD 2: PROTOCOLO VITALICIO -->
+          <div class="mega-card mega-card-premium">
+            <div class="mega-badge mega-badge-gold">MELHOR CUSTO-BENEF&Iacute;CIO</div>
+            <h3 class="mega-title">Protocolo Vital&iacute;cio + Consulta Individual</h3>
+            <p class="mega-duration">Acesso permanente + acompanhamento personalizado</p>
+
+            <ul class="mega-bullets">
+              <li>&#10003; <strong>Tudo do Desafio Completo 14D</strong></li>
+              <li>&#10003; Acesso vital&iacute;cio &mdash; sem prazo de expira&ccedil;&atilde;o</li>
+              <li>&#10003; Consulta individual com a equipe da Camila</li>
+              <li>&#10003; Protocolo ajustado ao seu biotipo espec&iacute;fico</li>
+              <li>&#10003; Aula &ldquo;Barriga Lisa Pra Sempre&rdquo;</li>
+              <li>&#10003; Protocolo de Emerg&ecirc;ncia 24h</li>
+              <li>&#10003; Suporte priorit&aacute;rio por 60 dias</li>
+              <li>&#10003; Atualiza&ccedil;&otilde;es futuras gratuitas</li>
+            </ul>
+
+            <div class="mega-price-block">
+              <p class="mega-anchor">Valor real: <span class="mega-anchor-old">R$ 1.547</span></p>
+              <p class="mega-anchor">S&oacute; a consulta individual custa: <span class="mega-anchor-old">R$ 550</span></p>
+              <p class="mega-price-label">Tudo junto por:</p>
+              <p class="mega-price">R$ 97</p>
+              <p class="mega-installment">ou 12x de R$ 9,70</p>
+              <p class="mega-savings">Voc&ecirc; economiza R$ 1.450 &#128293;</p>
+            </div>
+
+            <a href="https://lastlink.com/p/C88515614/checkout-payment/" class="cta-btn cta-main" data-checkout="97">QUERO O ACESSO VITAL&Iacute;CIO</a>
+            <p class="secure-line">&#128274; Compra 100% segura &middot; Acesso imediato &middot; 7 dias de garantia</p>
+          </div>
+
+        </div>
+
+        <!-- GARANTIA -->
+        <div class="guarantee-section">
+          <h3 class="offer-h3">O risco &eacute; todo meu. O resultado &eacute; todo seu.</h3>
+          <p class="offer-text">Voc&ecirc; tem <strong>7 dias</strong> para colocar o protocolo em pr&aacute;tica e sentir a diferen&ccedil;a. Se por qualquer motivo voc&ecirc; n&atilde;o estiver satisfeita &mdash; me manda uma mensagem e eu devolvo cada centavo. Sem formul&aacute;rio complicado. Sem precisar explicar nada. Sem questionamento.</p>
+          <p class="guarantee-highlight">Sete dias. Sem risco nenhum da sua parte.</p>
+        </div>
+
+        <!-- CTA EMOCIONAL -->
+        <div class="section-block section-emotional">
+          <h2 class="offer-h2">Aquela roupa que est&aacute; guardada no seu arm&aacute;rio tem uma data pra ser usada.</h2>
+          <p class="offer-text">Voc&ecirc; chegou at&eacute; aqui porque est&aacute; cansada de tentar com a ferramenta errada. Agora voc&ecirc; sabe o que est&aacute; na sua barriga. Sabe por que nada funcionou. E sabe o que precisa ser feito.</p>
+          <p class="offer-text">S&atilde;o 14 dias. Com tudo organizado. Com a Camila do seu lado todos os dias.</p>
+          <a href="https://lastlink.com/p/C0FDC7497/checkout-payment/" class="cta-btn cta-main" data-checkout="67">QUERO COME&Ccedil;AR AGORA</a>
+          <p class="secure-line">&#128274; 7 dias de garantia &middot; Acesso imediato &middot; Pagamento seguro</p>
+        </div>
+
+        <!-- FAQ -->
+        <div class="faq-section">
+          <h2 class="offer-h2">Perguntas frequentes</h2>
+          <div class="faq-list">
+            <details class="faq-item">
+              <summary>Funciona para quem est&aacute; na menopausa?</summary>
+              <p>Sim. A origem hormonal do Efeito Esponja Abdominal &eacute; especialmente comum em mulheres na menopausa &mdash; e o protocolo foi desenvolvido levando isso em conta. Mulheres de 45 a 55 anos est&atilde;o entre as que mais relatam resultado.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Preciso de academia ou equipamento?</summary>
+              <p>N&atilde;o. O movimento linf&aacute;tico &eacute; feito em casa, sem impacto, sem equipamento. 20 minutos por dia. Funciona em qualquer condi&ccedil;&atilde;o f&iacute;sica.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Vou passar fome?</summary>
+              <p>N&atilde;o. O card&aacute;pio antifermentativo &eacute; completo &mdash; caf&eacute;, almo&ccedil;o, jantar e sobremesa. Voc&ecirc; come bem durante os 14 dias. O protocolo n&atilde;o funciona por restri&ccedil;&atilde;o, funciona por drenagem.</p>
+            </details>
+            <details class="faq-item">
+              <summary>E se eu tiver hipotireoidismo ou outra condi&ccedil;&atilde;o?</summary>
+              <p>O protocolo foi desenvolvido para o corpo feminino real &mdash; incluindo mulheres com hipotireoidismo, hist&oacute;rico de dietas longas e metabolismo lento.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Quando come&ccedil;a?</summary>
+              <p>Imediatamente ap&oacute;s a confirma&ccedil;&atilde;o do pedido. Acesso liberado na hora.</p>
+            </details>
+          </div>
+        </div>
+
+        <!-- CTA FINAL -->
+        <div class="final-cta">
+          <p class="final-cta-text">Come&ccedil;a agora. Em 14 dias voc&ecirc; olha no espelho e entende o que foi diferente desta vez.</p>
+          <a href="https://lastlink.com/p/C0FDC7497/checkout-payment/" class="cta-btn cta-main" data-checkout="67">QUERO COME&Ccedil;AR AGORA</a>
+          <p class="secure-line">&#128274; 7 dias de garantia &middot; Acesso imediato &middot; Pagamento seguro</p>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
