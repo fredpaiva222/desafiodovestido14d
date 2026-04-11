@@ -80,13 +80,17 @@ img { max-width: 100%; display: block; }
 .back-btn[hidden] { display: none !important; }
 
 .brand {
-  font-size: 17px;
-  font-weight: 700;
-  color: var(--primary);
-  letter-spacing: -0.02em;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+}
+.brand-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 .header-section {
   font-size: 13px;
