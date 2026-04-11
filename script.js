@@ -280,98 +280,138 @@
   // ========== DYNAMIC DIAGNOSIS ==========
   function generateDiagnosis() {
     const el = document.getElementById("diagnosisText");
+    const originEl = document.getElementById("originDiagnosis");
     if (!el) return;
 
     const a = state.answers;
 
-    // Maps for each question
+    // ---- Determine dominant origin based on answers ----
+    let scoreF = 0, scoreH = 0, scoreL = 0; // fermentative, hormonal, lymphatic
+
+    // Q3: barriga varia
+    if (a.q3 === "sim-piora") scoreF += 2;
+    if (a.q3 === "sim-sempre") scoreH += 2;
+    if (a.q3 === "grande-sempre") scoreL += 2;
+    if (a.q3 === "as-vezes") { scoreF++; scoreH++; }
+
+    // Q9: sintomas
+    if (a.q9 === "inchaco") scoreF += 2;
+    if (a.q9 === "dura") scoreL += 2;
+    if (a.q9 === "peso") scoreL += 2;
+    if (a.q9 === "tudo") { scoreF++; scoreH++; scoreL++; }
+
+    // Q10: hormonal
+    if (a.q10 === "ciclo") scoreH += 3;
+    if (a.q10 === "depois-35") scoreH += 2;
+    if (a.q10 === "menopausa") scoreH += 3;
+    if (a.q10 === "sem-variacao") { scoreF++; scoreL++; }
+
+    // Q12: origem direta
+    if (a.q12 === "gas") scoreF += 3;
+    if (a.q12 === "liquido") scoreH += 3;
+    if (a.q12 === "linfatico") scoreL += 3;
+    if (a.q12 === "tres") { scoreF += 2; scoreH += 2; scoreL += 2; }
+
+    // Q13: fermentacao
+    if (a.q13 === "constantemente") scoreF += 2;
+    if (a.q13 === "alguns-alimentos") scoreF += 1;
+    if (a.q13 === "nao") scoreL += 1;
+
+    // Q1: idade amplifica hormonal
+    if (a.q1 === "45-54" || a.q1 === "55+") scoreH += 1;
+
+    // Determine winner
+    let dominantType = "fermentativa";
+    let maxScore = scoreF;
+    if (scoreH > maxScore) { dominantType = "hormonal"; maxScore = scoreH; }
+    if (scoreL > maxScore) { dominantType = "linfatica"; }
+
+    // ---- Origin data ----
+    const origins = {
+      fermentativa: {
+        icon: "\uD83E\uDDEB",
+        title: "Origem Fermentativa",
+        subtitle: 'Tipo 1 \u2014 "Est\u00f4mago Fermentado"',
+        color: "#FFF5F5",
+        border: "rgba(217, 79, 79, 0.2)",
+        accent: "#D94F4F",
+        description: "Bact\u00e9rias no seu intestino est\u00e3o fermentando os alimentos \u2014 mesmo os saud\u00e1veis \u2014 e produzindo g\u00e1s que fica preso na regi\u00e3o abdominal. \u00c9 por isso que voc\u00ea come uma salada e a barriga fica maior do que antes de comer. N\u00e3o \u00e9 sua imagina\u00e7\u00e3o. \u00c9 fermenta\u00e7\u00e3o.",
+        why_failed: "Dieta reduziu caloria, mas n\u00e3o parou a fermenta\u00e7\u00e3o. Jejum criou janela de queima, mas voc\u00ea continuou comendo os mesmos alimentos fermentativos. O ciclo nunca quebrou.",
+        what_happens: "Cada refei\u00e7\u00e3o alimenta as bact\u00e9rias erradas. Elas produzem g\u00e1s. O g\u00e1s infla a barriga de dentro pra fora. A inflama\u00e7\u00e3o faz o corpo reter ainda mais l\u00edquido. A barriga cresce dia ap\u00f3s dia."
+      },
+      hormonal: {
+        icon: "\uD83D\uDCA7",
+        title: "Origem Hormonal",
+        subtitle: 'Tipo 2 \u2014 "Reten\u00e7\u00e3o Hormonal"',
+        color: "#F0F4FF",
+        border: "rgba(79, 114, 217, 0.2)",
+        accent: "#4F72D9",
+        description: "Depois dos 30, seus horm\u00f4nios est\u00e3o mandando o corpo reter l\u00edquido especificamente na regi\u00e3o abdominal como mecanismo de defesa. \u00c9 por isso que a barriga varia ao longo do m\u00eas, piora em certas fases do ciclo, e em alguns dias voc\u00ea acorda mais chapada e em outros parece que voltou tudo.",
+        why_failed: "Exerc\u00edcio fortaleceu o m\u00fasculo \u2014 que ficou debaixo da esponja. Ch\u00e1 detox aliviou o sintoma por um dia. Nenhum deles tratou o sinal hormonal que manda estocar l\u00edquido na barriga.",
+        what_happens: "O corpo recebe o sinal hormonal pra reter. O l\u00edquido se acumula na regi\u00e3o abdominal. A barriga incha, endurece, varia. D\u00e9ficit cal\u00f3rico n\u00e3o drena l\u00edquido hormonal."
+      },
+      linfatica: {
+        icon: "\uD83D\uDD04",
+        title: "Origem Linf\u00e1tica",
+        subtitle: 'Tipo 3 \u2014 "Drenagem Travada"',
+        color: "#F0FFF4",
+        border: "rgba(79, 217, 114, 0.2)",
+        accent: "#3B9B5E",
+        description: "O sistema linf\u00e1tico \u00e9 o sistema de drenagem do corpo \u2014 respons\u00e1vel por eliminar toxinas, l\u00edquido em excesso e res\u00edduos inflamat\u00f3rios. Quando ele fica lento, tudo que deveria sair fica acumulado. A barriga fica pesada, dura, e parece que o corpo n\u00e3o elimina nada.",
+        why_failed: "Academia aumentou gasto cal\u00f3rico, mas exerc\u00edcio convencional n\u00e3o ativa o sistema linf\u00e1tico \u2014 dependendo da intensidade, pode inflamar ainda mais. Dieta cortou caloria, mas n\u00e3o drenou os res\u00edduos acumulados.",
+        what_happens: "O sistema linf\u00e1tico est\u00e1 lento. Toxinas, l\u00edquido e res\u00edduos inflamat\u00f3rios ficam presos. A barriga fica pesada e inchada o tempo todo. Nenhum d\u00e9ficit cal\u00f3rico resolve isso."
+      }
+    };
+
+    const o = origins[dominantType];
+
+    // ---- Render diagnosis text ----
     const ageMap = { "25-34": "25 a 34", "35-44": "35 a 44", "45-54": "45 a 54", "55+": "mais de 55" };
     const weightMap = { "ate-65": "at\u00e9 65 kg", "65-80": "entre 65 e 80 kg", "80-95": "entre 80 e 95 kg", "95+": "acima de 95 kg" };
-    const heightMap = { "ate-158": "at\u00e9 1,58m", "159-165": "entre 1,59 e 1,65m", "166-172": "entre 1,66 e 1,72m", "172+": "acima de 1,72m" };
     const timeMap = { "meses": "alguns meses", "1-3-anos": "1 a 3 anos", "3-5-anos": "3 a 5 anos", "5+-anos": "mais de 5 anos" };
-    const situationMap = {
-      "faco-tudo-certo": "faz tudo certo e a barriga n\u00e3o sai",
-      "quase-desisti": "j\u00e1 tentou tanto que quase desistiu",
-      "sem-acreditar": "ainda est\u00e1 tentando, mas sem acreditar muito",
-      "resolver-de-vez": "decidiu que precisa resolver isso de vez"
-    };
-    const variationMap = {
-      "sim-sempre": "sua barriga varia ao longo do dia \u2014 menor de manh\u00e3, maior \u00e0 tarde",
-      "sim-piora": "sua barriga piora muito depois de comer qualquer coisa",
-      "as-vezes": "sua barriga varia \u00e0s vezes, sem um padr\u00e3o claro",
-      "grande-sempre": "sua barriga fica grande o tempo todo"
-    };
-    const triedMap = {
-      "dieta": "dieta e corte de carboidrato",
-      "academia": "academia, abdominais e exerc\u00edcios",
-      "jejum": "jejum intermitente e detox",
-      "tudo": "dieta, jejum, exerc\u00edcio \u2014 tudo, sem resultado duradouro"
-    };
-    const lostWeightMap = {
-      "sim-exato": "j\u00e1 perdeu peso em outras partes do corpo, mas a barriga ficou",
-      "rosto-pernas": "o rosto afinou, as pernas melhoraram, mas a barriga ficou",
-      "nenhum-lugar": "n\u00e3o consegue perder em lugar nenhum",
-      "perde-recupera": "perde e recupera tudo sempre no mesmo lugar"
-    };
-    const impactMap = {
-      "roupas": "evita roupas que marquem o corpo",
-      "fotos": "se sente mal em fotos e evita eventos",
-      "autoestima": "afeta sua autoestima e seu relacionamento",
-      "tudo": "tudo isso ao mesmo tempo"
-    };
-    const symptomMap = {
-      "inchaco": "incha\u00e7o e estufamento mesmo comendo pouco",
-      "dura": "barriga dura, dif\u00edcil de afinar",
-      "peso": "sensa\u00e7\u00e3o de peso e press\u00e3o constante",
-      "tudo": "todos esses sintomas dependendo do dia"
-    };
-    const hormonalMap = {
-      "ciclo": "piora especialmente antes do ciclo menstrual",
-      "depois-35": "piorou bastante depois dos 35 ou 40 anos",
-      "menopausa": "est\u00e1 na menopausa e ficou bem pior",
-      "sem-variacao": "fica grande o tempo todo, sem varia\u00e7\u00e3o clara"
-    };
-    const originMap = {
-      "gas": "origem fermentativa \u2014 g\u00e1s preso",
-      "liquido": "origem hormonal \u2014 reten\u00e7\u00e3o de l\u00edquido",
-      "linfatico": "origem linf\u00e1tica \u2014 corpo n\u00e3o elimina",
-      "tres": "as tr\u00eas origens ativas ao mesmo tempo"
-    };
     const feelMap = {
       "orgulho": "orgulho do pr\u00f3prio corpo",
       "desejada": "se sentir desejada e atraente de novo",
-      "parar-esconder": "parar de se esconder em fotos e evitar espelhos",
-      "controle": "sentir que tem controle do pr\u00f3prio corpo"
-    };
-    const goalMap = {
-      "ate-5cm": "at\u00e9 5 cm",
-      "5-10cm": "entre 5 e 10 cm",
-      "10cm+": "mais de 10 cm",
-      "nao-sei": "resultado onde nunca viu"
+      "parar-esconder": "parar de se esconder em fotos",
+      "controle": "sentir controle do pr\u00f3prio corpo"
     };
 
     const age = ageMap[a.q1] || "sua faixa et\u00e1ria";
     const weight = weightMap[a.q7] || "seu peso";
-    const height = heightMap[a.q8] || "sua altura";
     const time = timeMap[a.q11] || "algum tempo";
-    const situation = situationMap[a.q2] || "tentando resolver";
-    const variation = variationMap[a.q3] || "barriga que varia";
-    const tried = triedMap[a.q4] || "diversos m\u00e9todos";
-    const lostWeight = lostWeightMap[a.q5] || "tentou perder peso";
-    const impact = impactMap[a.q6] || "afeta sua vida";
-    const symptom = symptomMap[a.q9] || "sintomas abdominais";
-    const hormonal = hormonalMap[a.q10] || "varia\u00e7\u00e3o hormonal";
-    const origin = originMap[a.q12] || "origens ativas";
-    const feel = feelMap[a.q16] || "se sentir bem";
-    const goal = goalMap[a.q14] || "perder barriga";
+    const feel = feelMap[a.q16] || "se sentir bem consigo mesma";
 
     el.innerHTML = `
-      <p>Voc\u00ea tem <strong>${age} anos</strong>, pesa aproximadamente <strong>${weight}</strong>, mede <strong>${height}</strong> e j\u00e1 tenta resolver a barriga h\u00e1 <strong>${time}</strong>.</p>
-      <p>Voc\u00ea relatou que <strong>${situation}</strong>. Que ${variation}. Que ${lostWeight}.</p>
-      <p>Voc\u00ea j\u00e1 tentou <strong>${tried}</strong>. Sente <strong>${symptom}</strong>. A barriga <strong>${hormonal}</strong>.</p>
-      <p>Seu padr\u00e3o dominante indica <strong>${origin}</strong>.</p>
-      <p>Isso ${impact}. Sua meta: <strong>perder ${goal}</strong>. O que voc\u00ea mais quer sentir \u00e9 <strong>${feel}</strong>.</p>
+      <p>Voc\u00ea tem <strong>${age} anos</strong>, pesa aproximadamente <strong>${weight}</strong> e j\u00e1 tenta resolver a barriga h\u00e1 <strong>${time}</strong>.</p>
+      <p>Suas respostas indicam um padr\u00e3o claro. Seu tipo dominante de incha\u00e7o \u00e9:</p>
     `;
+
+    // ---- Render origin card ----
+    if (originEl) {
+      originEl.innerHTML = `
+        <div class="origin-result-card" style="background:${o.color};border:2px solid ${o.border};">
+          <span class="origin-result-icon">${o.icon}</span>
+          <h3 class="origin-result-title" style="color:${o.accent};">${o.title}</h3>
+          <p class="origin-result-subtitle">${o.subtitle}</p>
+          <p class="origin-result-desc">${o.description}</p>
+        </div>
+
+        <div class="section-block">
+          <h3 class="offer-h3">Por que nada funcionou at\u00e9 agora</h3>
+          <p class="offer-text">${o.why_failed}</p>
+        </div>
+
+        <div class="section-block">
+          <h3 class="offer-h3">O que est\u00e1 acontecendo no seu corpo agora</h3>
+          <p class="offer-text">${o.what_happens}</p>
+        </div>
+
+        <div class="origin-result-feel">
+          <p>O que voc\u00ea mais quer sentir \u00e9 <strong>${feel}</strong>.</p>
+          <p>E agora voc\u00ea sabe exatamente o que precisa ser tratado.</p>
+        </div>
+      `;
+    }
   }
 
   // ========== TIMER ==========

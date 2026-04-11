@@ -1511,6 +1511,52 @@ a.cta-btn {
   display: block;
 }
 
+/* ---------- origin diagnosis result ---------- */
+.origin-diagnosis {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.origin-result-card {
+  border-radius: var(--r-lg);
+  padding: 28px 22px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.origin-result-icon {
+  font-size: 42px;
+}
+.origin-result-title {
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+.origin-result-subtitle {
+  font-size: 14px;
+  color: var(--subtext);
+  font-style: italic;
+}
+.origin-result-desc {
+  font-size: 15px;
+  color: var(--text);
+  line-height: 1.65;
+  margin-top: 8px;
+}
+.origin-result-feel {
+  background: var(--success-bg);
+  border-radius: var(--r-md);
+  padding: 18px;
+  text-align: center;
+}
+.origin-result-feel p {
+  font-size: 15px;
+  color: var(--text);
+  line-height: 1.55;
+}
+
 /* ---------- vertical element cards (with image top) ---------- */
 .element-v-card {
   background: var(--white);
