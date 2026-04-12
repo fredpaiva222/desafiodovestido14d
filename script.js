@@ -68,6 +68,40 @@
     if (screenKey === "loading") runLoadingSequence();
     if (screenKey === "scratch") setTimeout(initScratchCard, 300);
     if (screenKey === "offer") { initOfferPage(); initScrollReveal(); }
+
+    // Track step in all analytics
+    trackFunnelStep(screenKey, index);
+  }
+
+  // ========== FUNNEL TRACKING ==========
+  function trackFunnelStep(screenKey, stepIndex) {
+    const eventName = "QuizStep_" + screenKey;
+    const payload = { step: screenKey, step_number: stepIndex };
+
+    // Meta Pixel — dispara 2 eventos: nome específico da tela + genérico "QuizStep"
+    if (typeof fbq === "function") {
+      fbq("trackCustom", eventName, payload);
+      fbq("trackCustom", "QuizStep", payload);
+    }
+
+    // UTMify custom event (se o SDK suportar)
+    if (window.utmify && typeof window.utmify.track === "function") {
+      window.utmify.track(eventName, payload);
+    }
+
+    // Marcos principais do funil — eventos "limpos" para filtrar no Events Manager
+    if (screenKey === "splash") fireMilestone("QuizStart");
+    if (screenKey === "break1") fireMilestone("QuizBreak1");
+    if (screenKey === "break2") fireMilestone("QuizBreak2_Mecanismo");
+    if (screenKey === "break3") fireMilestone("QuizBreak3");
+    if (screenKey === "break4") fireMilestone("QuizBreak4_Diagnostico");
+    if (screenKey === "loading") fireMilestone("QuizLoading");
+    if (screenKey === "scratch") fireMilestone("QuizScratch");
+    if (screenKey === "offer") fireMilestone("QuizComplete_ViewOffer");
+  }
+
+  function fireMilestone(name) {
+    if (typeof fbq === "function") fbq("trackCustom", name);
   }
 
   function updateProgress() {
