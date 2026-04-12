@@ -119,7 +119,7 @@
   // ========== LOADING SEQUENCE (BetterMe exact) ==========
   function runLoadingSequence() {
     const steps = document.querySelectorAll(".loading-step");
-    const durations = [800, 700, 600, 500, 400]; // total ~3s
+    const durations = [1800, 1700, 1600, 1500, 1400]; // total ~8s
     let delay = 0;
 
     steps.forEach((step, i) => {

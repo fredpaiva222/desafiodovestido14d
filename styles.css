@@ -208,6 +208,37 @@ img { max-width: 100%; display: block; }
   line-height: 1.5;
 }
 
+/* ---------- split layout (options + side image) ---------- */
+.q-split-layout {
+  display: grid;
+  grid-template-columns: 1fr 0.8fr;
+  gap: 14px;
+  align-items: start;
+}
+.q-split-layout .option-list {
+  min-width: 0;
+}
+.q-split-layout .option-row {
+  padding: 14px 14px;
+}
+.q-split-layout .option-text {
+  font-size: 14px;
+}
+.q-side-img {
+  position: sticky;
+  top: 120px;
+  align-self: start;
+}
+.q-side-img img {
+  width: 100%;
+  display: block;
+  border-radius: var(--r-md);
+}
+@media (max-width: 420px) {
+  .q-split-layout { grid-template-columns: 1fr 0.7fr; gap: 10px; }
+  .q-split-layout .option-text { font-size: 13px; }
+}
+
 /* ---------- option rows (BetterMe style) ---------- */
 .option-list {
   display: flex;
