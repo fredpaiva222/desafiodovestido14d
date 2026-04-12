@@ -53,13 +53,13 @@ img { max-width: 100%; display: block; }
   border-bottom: 1px solid var(--line);
 }
 .header-inner {
-  display: flex;
+  display: grid;
+  grid-template-columns: 40px 1fr 60px;
   align-items: center;
-  justify-content: space-between;
-  padding: 14px 20px;
+  padding: 10px 16px 12px;
   max-width: 520px;
   margin: 0 auto;
-  position: relative;
+  gap: 12px;
 }
 .back-btn {
   width: 36px;
@@ -73,36 +73,37 @@ img { max-width: 100%; display: block; }
   color: var(--text);
   transition: all 0.2s var(--ease);
   flex-shrink: 0;
+  grid-column: 1;
 }
 .back-btn svg { width: 20px; height: 20px; }
 .back-btn:hover { background: var(--muted); }
 .back-btn:active { transform: scale(0.92); }
-.back-btn[hidden] { display: none !important; }
+.back-btn[hidden] { visibility: hidden; }
 
 .brand {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  grid-column: 2;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 .brand-avatar {
-  width: 56px;
-  height: 56px;
+  width: 72px;
+  height: 72px;
   border-radius: 50%;
   object-fit: cover;
+  display: block;
 }
 .header-section {
-  font-size: 13px;
+  grid-column: 3;
+  font-size: 12px;
   font-weight: 500;
   color: var(--subtext);
   text-align: right;
-  min-width: 36px;
 }
 
 /* ---------- progress bar ---------- */
 .progress-wrap {
-  padding: 0 20px 10px;
+  padding: 0 16px 12px;
   max-width: 520px;
   margin: 0 auto;
 }
