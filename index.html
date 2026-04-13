@@ -862,6 +862,13 @@
 
     <!-- ===== TELA OFERTA COMPLETA ===== -->
     <section class="screen" data-screen="offer" data-progress="100" data-section="">
+      <!-- STICKY CTA FLUTUANTE -->
+      <a href="#pricingSection" class="sticky-cta" id="stickyCta" data-scroll-to="pricingSection">
+        <span class="sticky-cta-icon">&#128293;</span>
+        <span class="sticky-cta-text">Quero come&ccedil;ar agora</span>
+        <span class="sticky-cta-arrow">&#8595;</span>
+      </a>
+
       <div class="screen-inner offer-screen">
 
         <!-- BARRA URG&Ecirc;NCIA TOPO -->
@@ -899,12 +906,29 @@
         <!-- DIAGN&Oacute;STICO DA ORIGEM — din&acirc;mico via JS -->
         <div class="origin-diagnosis" id="originDiagnosis"></div>
 
-        <!-- VIRADA EMOCIONAL -->
-        <div class="section-block section-highlight">
-          <h2 class="offer-h2">Esponja encharcada drena.</h2>
-          <p class="offer-text">Quando voc&ecirc; aplica o protocolo certo, na sequ&ecirc;ncia certa, atacando as tr&ecirc;s origens ao mesmo tempo &mdash; a esponja come&ccedil;a a esvaziar. E quando ela esvazia, a barriga some de um jeito que parece imposs&iacute;vel pra quem nunca entendeu o que estava ali dentro.</p>
-          <p class="offer-text">N&atilde;o &eacute; magia. &Eacute; simplesmente a primeira vez que o <strong>problema certo</strong> est&aacute; sendo tratado.</p>
-          <p class="offer-text">&Eacute; exatamente isso que o <strong>Desafio do Vestido 14D</strong> faz.</p>
+        <!-- VIRADA EMOCIONAL — CARD IMPACTO -->
+        <div class="impact-card">
+          <span class="impact-eyebrow">A virada</span>
+          <h2 class="impact-title">Esponja encharcada <span class="impact-highlight">drena.</span></h2>
+          <p class="impact-text">Quando voc&ecirc; aplica o protocolo certo &mdash; a barriga some de um jeito que parece imposs&iacute;vel.</p>
+        </div>
+
+        <!-- STATS BAR -->
+        <div class="stats-bar">
+          <div class="stat-item">
+            <p class="stat-number" data-count="13">0</p>
+            <p class="stat-label">anos de consult&oacute;rio</p>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <p class="stat-number" data-count="400" data-suffix="k+">0</p>
+            <p class="stat-label">mulheres acompanham</p>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <p class="stat-number" data-count="14">0</p>
+            <p class="stat-label">dias para drenar</p>
+          </div>
         </div>
 
         <!-- APRESENTA&Ccedil;&Atilde;O DA SOLU&Ccedil;&Atilde;O -->
@@ -1035,30 +1059,37 @@
           <p class="progress-caption">Em 14 dias aplicando o protocolo corretamente, voc&ecirc; sai do pico de incha&ccedil;o abdominal at&eacute; a drenagem completa da esponja.</p>
         </div>
 
-        <!-- LINHA DO TEMPO 14 DIAS -->
+        <!-- LINHA DO TEMPO 14 DIAS — CARDS VISUAIS -->
         <div class="timeline-section">
-          <h2 class="offer-h2">O que acontece no seu corpo durante os 14 dias</h2>
-          <div class="timeline">
-            <div class="timeline-item">
-              <div class="timeline-marker">&#128197;</div>
-              <div>
-                <h4>Dias 1 a 3 &mdash; A esponja para de encharcar</h4>
-                <p>O g&aacute;s preso come&ccedil;a a ser eliminado. O incha&ccedil;o da tarde diminui. As roupas come&ccedil;am a sentar diferente.</p>
+          <span class="section-eyebrow">Jornada de 14 dias</span>
+          <h2 class="offer-h2">O que acontece no seu corpo</h2>
+          <div class="timeline-cards">
+            <div class="tl-card reveal-on-scroll">
+              <div class="tl-card-header">
+                <span class="tl-card-number">01</span>
+                <span class="tl-card-range">Dias 1&mdash;3</span>
               </div>
+              <h4 class="tl-card-title">A esponja para de encharcar</h4>
+              <p class="tl-card-desc">G&aacute;s eliminado. Incha&ccedil;o da tarde diminui. Roupas come&ccedil;am a sentar diferente.</p>
+              <div class="tl-card-progress"><span style="width:20%"></span></div>
             </div>
-            <div class="timeline-item">
-              <div class="timeline-marker">&#128197;</div>
-              <div>
-                <h4>Dias 4 a 7 &mdash; O sistema linf&aacute;tico acorda</h4>
-                <p>O l&iacute;quido retido come&ccedil;a a ser drenado. A barriga come&ccedil;a a afinar de um jeito diferente &mdash; n&atilde;o &eacute; peso saindo, &eacute; volume saindo.</p>
+            <div class="tl-card reveal-on-scroll">
+              <div class="tl-card-header">
+                <span class="tl-card-number">02</span>
+                <span class="tl-card-range">Dias 4&mdash;7</span>
               </div>
+              <h4 class="tl-card-title">O sistema linf&aacute;tico acorda</h4>
+              <p class="tl-card-desc">L&iacute;quido drenado. Barriga afinando &mdash; n&atilde;o &eacute; peso saindo, &eacute; volume saindo.</p>
+              <div class="tl-card-progress"><span style="width:55%"></span></div>
             </div>
-            <div class="timeline-item">
-              <div class="timeline-marker">&#128197;</div>
-              <div>
-                <h4>Dias 8 a 14 &mdash; O sinal hormonal &eacute; interrompido</h4>
-                <p>O corpo para de mandar l&iacute;quido para a regi&atilde;o abdominal. A esponja est&aacute; quase vazia. &Eacute; aqui que as mulheres olham no espelho e n&atilde;o acreditam.</p>
+            <div class="tl-card reveal-on-scroll tl-card-final">
+              <div class="tl-card-header">
+                <span class="tl-card-number">03</span>
+                <span class="tl-card-range">Dias 8&mdash;14</span>
               </div>
+              <h4 class="tl-card-title">Reset hormonal completo</h4>
+              <p class="tl-card-desc">Corpo para de reter. Esponja vazia. Voc&ecirc; olha no espelho e n&atilde;o acredita.</p>
+              <div class="tl-card-progress"><span style="width:100%"></span></div>
             </div>
           </div>
         </div>
@@ -1150,20 +1181,23 @@
 
         </div>
 
-        <!-- GARANTIA -->
-        <div class="guarantee-section">
-          <h3 class="offer-h3">O risco &eacute; todo meu. O resultado &eacute; todo seu.</h3>
-          <p class="offer-text">Voc&ecirc; tem <strong>7 dias</strong> para colocar o protocolo em pr&aacute;tica e sentir a diferen&ccedil;a. Se por qualquer motivo voc&ecirc; n&atilde;o estiver satisfeita &mdash; me manda uma mensagem e eu devolvo cada centavo. Sem formul&aacute;rio complicado. Sem precisar explicar nada. Sem questionamento.</p>
-          <p class="guarantee-highlight">Sete dias. Sem risco nenhum da sua parte.</p>
+        <!-- GARANTIA — REDESENHADA -->
+        <div class="guarantee-v2">
+          <div class="guarantee-shield">
+            <span class="guarantee-days">7</span>
+            <span class="guarantee-days-label">dias</span>
+          </div>
+          <div class="guarantee-content">
+            <h3 class="guarantee-title">Garantia incondicional</h3>
+            <p>Testa 7 dias. Se n&atilde;o sentir diferen&ccedil;a, devolvo cada centavo. Sem pergunta, sem formul&aacute;rio.</p>
+          </div>
         </div>
 
-        <!-- CTA EMOCIONAL -->
-        <div class="section-block section-emotional">
-          <h2 class="offer-h2">Aquela roupa que est&aacute; guardada no seu arm&aacute;rio tem uma data pra ser usada.</h2>
-          <p class="offer-text">Voc&ecirc; chegou at&eacute; aqui porque est&aacute; cansada de tentar com a ferramenta errada. Agora voc&ecirc; sabe o que est&aacute; na sua barriga. Sabe por que nada funcionou. E sabe o que precisa ser feito.</p>
-          <p class="offer-text">S&atilde;o 14 dias. Com tudo organizado. Com a Camila do seu lado todos os dias.</p>
-          <a href="#pricingSection" class="cta-btn cta-main" data-scroll-to="pricingSection">QUERO COME&Ccedil;AR AGORA</a>
-          <p class="secure-line">&#128274; 7 dias de garantia &middot; Acesso imediato &middot; Pagamento seguro</p>
+        <!-- CTA EMOCIONAL — ENXUTO -->
+        <div class="emotional-cta">
+          <h2 class="emotional-title">Aquela roupa guardada no arm&aacute;rio <span class="highlight-brown">tem uma data pra ser usada.</span></h2>
+          <a href="#pricingSection" class="cta-btn cta-main" data-scroll-to="pricingSection">&#128293; QUERO COME&Ccedil;AR AGORA</a>
+          <p class="secure-line">&#128274; 7 dias de garantia &middot; Acesso imediato</p>
         </div>
 
         <!-- FAQ -->

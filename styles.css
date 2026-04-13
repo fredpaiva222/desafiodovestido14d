@@ -1359,6 +1359,311 @@ a.cta-btn {
   line-height: 1.6;
 }
 
+/* =====================================================
+   OFFER PAGE V2 — MODERN REDESIGN
+   ===================================================== */
+
+/* ---------- sticky floating CTA ---------- */
+.sticky-cta {
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%) translateY(120%);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 24px;
+  background: linear-gradient(135deg, #3B2A24, #2a1d18);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 999px;
+  box-shadow: 0 10px 30px rgba(59, 42, 36, 0.35);
+  transition: transform 0.4s var(--ease-out);
+  max-width: calc(100% - 32px);
+  white-space: nowrap;
+}
+.sticky-cta.is-visible {
+  transform: translateX(-50%) translateY(0);
+}
+.sticky-cta:hover {
+  transform: translateX(-50%) translateY(-4px);
+}
+.sticky-cta-icon { font-size: 18px; }
+.sticky-cta-arrow {
+  font-size: 14px;
+  animation: bounceDown 1.5s ease-in-out infinite;
+}
+@keyframes bounceDown {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(4px); }
+}
+
+/* ---------- impact card (virada) ---------- */
+.impact-card {
+  background: linear-gradient(135deg, #3B2A24 0%, #2a1d18 100%);
+  border-radius: var(--r-lg);
+  padding: 32px 24px;
+  text-align: center;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 12px 40px rgba(59, 42, 36, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+.impact-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(220, 234, 215, 0.15), transparent);
+  pointer-events: none;
+}
+.impact-eyebrow {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #DCEAD7;
+}
+.impact-title {
+  font-size: 32px;
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+.impact-highlight {
+  color: #DCEAD7;
+  font-style: italic;
+}
+.impact-text {
+  font-size: 15px;
+  opacity: 0.85;
+  line-height: 1.55;
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+/* ---------- stats bar ---------- */
+.stats-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 20px 12px;
+  gap: 8px;
+}
+.stat-item {
+  flex: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.stat-number {
+  font-size: 30px;
+  font-weight: 900;
+  color: var(--primary);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.stat-label {
+  font-size: 11px;
+  color: var(--subtext);
+  font-weight: 600;
+  line-height: 1.3;
+}
+.stat-divider {
+  width: 1px;
+  height: 40px;
+  background: var(--line);
+}
+
+/* ---------- section eyebrow ---------- */
+.section-eyebrow {
+  display: inline-block;
+  padding: 5px 14px;
+  background: var(--success-bg);
+  color: var(--success);
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  border-radius: var(--r-pill);
+  align-self: center;
+}
+
+/* ---------- timeline cards (horizontal visual) ---------- */
+.timeline-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+.tl-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), border-color 0.25s var(--ease);
+  position: relative;
+  overflow: hidden;
+}
+.tl-card:hover {
+  transform: translateX(4px);
+  border-color: var(--primary);
+  box-shadow: 0 6px 20px rgba(59, 42, 36, 0.08);
+}
+.tl-card-header {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+.tl-card-number {
+  font-size: 32px;
+  font-weight: 900;
+  color: var(--primary);
+  opacity: 0.2;
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+.tl-card-range {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--subtext);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.tl-card-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+.tl-card-desc {
+  font-size: 14px;
+  color: var(--subtext);
+  line-height: 1.5;
+}
+.tl-card-progress {
+  height: 4px;
+  background: rgba(59, 42, 36, 0.08);
+  border-radius: var(--r-pill);
+  overflow: hidden;
+  margin-top: 4px;
+}
+.tl-card-progress span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #E9A43F, #5A8A3C);
+  border-radius: var(--r-pill);
+  transition: width 1s var(--ease-out);
+}
+.tl-card-final {
+  background: linear-gradient(135deg, #FAF7F4 0%, #fff 100%);
+  border-color: var(--primary);
+}
+.tl-card-final .tl-card-number {
+  color: #5A8A3C;
+  opacity: 0.5;
+}
+
+/* ---------- guarantee v2 ---------- */
+.guarantee-v2 {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: var(--white);
+  border: 2px solid var(--success-bg);
+  border-radius: var(--r-lg);
+  padding: 20px 22px;
+  position: relative;
+  overflow: hidden;
+}
+.guarantee-shield {
+  width: 72px;
+  height: 72px;
+  background: linear-gradient(135deg, #5A8A3C, #71A31D);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  flex-shrink: 0;
+  box-shadow: 0 6px 20px rgba(90, 138, 60, 0.3);
+}
+.guarantee-days {
+  font-size: 26px;
+  font-weight: 900;
+  line-height: 1;
+}
+.guarantee-days-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  opacity: 0.9;
+  margin-top: 2px;
+}
+.guarantee-content h3 {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.guarantee-content p {
+  font-size: 13.5px;
+  color: var(--subtext);
+  line-height: 1.5;
+}
+
+/* ---------- emotional CTA compact ---------- */
+.emotional-cta {
+  text-align: center;
+  padding: 36px 20px;
+  background: linear-gradient(180deg, transparent 0%, var(--muted) 50%, transparent 100%);
+  border-radius: var(--r-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: center;
+}
+.emotional-title {
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 1.25;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  max-width: 420px;
+}
+.highlight-brown {
+  color: var(--primary);
+  font-style: italic;
+}
+
+/* ---------- spacing in offer screen ---------- */
+.offer-screen { gap: 32px; }
+
+@media (max-width: 420px) {
+  .impact-title { font-size: 26px; }
+  .stat-number { font-size: 24px; }
+  .emotional-title { font-size: 20px; }
+  .guarantee-v2 { flex-direction: column; text-align: center; }
+  .sticky-cta { font-size: 14px; padding: 12px 18px; }
+}
+
 /* ---------- final CTA ---------- */
 .final-cta {
   text-align: center;

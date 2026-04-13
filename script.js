@@ -309,6 +309,62 @@
     initTimer();
     initPricingCards();
     initCtaButtons();
+    initStickyCta();
+    initStatsCounter();
+  }
+
+  // ========== STICKY CTA ==========
+  function initStickyCta() {
+    const sticky = document.getElementById("stickyCta");
+    const pricing = document.getElementById("pricingSection");
+    if (!sticky) return;
+
+    function check() {
+      const scrolled = window.scrollY;
+      // Show after 600px scroll
+      const shouldShow = scrolled > 600;
+      // Hide when pricing section is visible
+      if (pricing) {
+        const rect = pricing.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          sticky.classList.remove("is-visible");
+          return;
+        }
+      }
+      sticky.classList.toggle("is-visible", shouldShow);
+    }
+    window.addEventListener("scroll", check, { passive: true });
+    check();
+  }
+
+  // ========== STATS COUNTER ==========
+  function initStatsCounter() {
+    const stats = document.querySelectorAll(".stat-number[data-count]");
+    if (!stats.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        if (el.dataset.animated) return;
+        el.dataset.animated = "1";
+        const target = parseInt(el.dataset.count, 10);
+        const suffix = el.dataset.suffix || "";
+        const duration = 1400;
+        const start = Date.now();
+        function tick() {
+          const elapsed = Date.now() - start;
+          const p = Math.min(elapsed / duration, 1);
+          const eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.round(target * eased) + suffix;
+          if (p < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+        observer.unobserve(el);
+      });
+    }, { threshold: 0.5 });
+
+    stats.forEach(s => observer.observe(s));
   }
 
   // ========== DYNAMIC DIAGNOSIS ==========
@@ -508,6 +564,8 @@
 
     // Scroll-to buttons
     document.querySelectorAll("[data-scroll-to]").forEach(btn => {
+      if (btn.dataset.scrollBound) return;
+      btn.dataset.scrollBound = "1";
       btn.addEventListener("click", (e) => {
         e.preventDefault();
         const target = document.getElementById(btn.dataset.scrollTo);
