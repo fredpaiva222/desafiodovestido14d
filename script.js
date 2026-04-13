@@ -76,9 +76,9 @@
   // ========== FUNNEL TRACKING ==========
   function trackFunnelStep(screenKey, stepIndex) {
     const eventName = "QuizStep_" + screenKey;
-    const payload = { step: screenKey, step_number: stepIndex };
+    const payload = { step: screenKey, step_number: stepIndex, content_name: "Desentupidor Abdominal Quiz" };
 
-    // Meta Pixel — dispara 2 eventos: nome específico da tela + genérico "QuizStep"
+    // Meta Pixel — dispara eventos custom pra cada passo
     if (typeof fbq === "function") {
       fbq("trackCustom", eventName, payload);
       fbq("trackCustom", "QuizStep", payload);
@@ -89,8 +89,21 @@
       window.utmify.track(eventName, payload);
     }
 
-    // Marcos principais do funil — eventos "limpos" para filtrar no Events Manager
-    if (screenKey === "splash") fireMilestone("QuizStart");
+    // EVENTOS PADRÃO META (pra otimização de anúncios)
+    if (screenKey === "splash") {
+      fireStandardEvent("ViewContent", { content_name: "Desentupidor Abdominal - Quiz Start" });
+    }
+    if (screenKey === "break2") {
+      // Quando ela já engajou o suficiente pra ser "Lead qualificado"
+      fireStandardEvent("Lead", { content_name: "Desentupidor Abdominal - Quiz Mid", value: 0, currency: "BRL" });
+    }
+    if (screenKey === "offer") {
+      // Chegou na página de vendas — Lead completo + ViewContent da oferta
+      fireStandardEvent("Lead", { content_name: "Desentupidor Abdominal - Quiz Complete", value: 0, currency: "BRL" });
+      fireStandardEvent("ViewContent", { content_name: "Desentupidor Abdominal - Sales Page", content_type: "product", value: 47, currency: "BRL" });
+    }
+
+    // Marcos extras (custom — pra análise granular)
     if (screenKey === "break1") fireMilestone("QuizBreak1");
     if (screenKey === "break2") fireMilestone("QuizBreak2_Mecanismo");
     if (screenKey === "break3") fireMilestone("QuizBreak3");
@@ -98,6 +111,10 @@
     if (screenKey === "loading") fireMilestone("QuizLoading");
     if (screenKey === "scratch") fireMilestone("QuizScratch");
     if (screenKey === "offer") fireMilestone("QuizComplete_ViewOffer");
+  }
+
+  function fireStandardEvent(eventName, payload) {
+    if (typeof fbq === "function") fbq("track", eventName, payload || {});
   }
 
   function fireMilestone(name) {
@@ -550,14 +567,19 @@
   function initCtaButtons() {
     document.querySelectorAll("[data-checkout]").forEach(btn => {
       btn.addEventListener("click", () => {
-        const value = parseFloat(btn.dataset.checkout) || 67;
+        const value = parseFloat(btn.dataset.checkout) || 47;
         if (typeof fbq === "function") {
           fbq("track", "InitiateCheckout", {
-            content_name: "Desafio do Vestido 14D",
+            content_name: "Desentupidor Abdominal",
             content_category: "Checkout",
+            content_ids: ["desentupidor-abdominal-14d"],
             value: value,
-            currency: "BRL"
+            currency: "BRL",
+            num_items: 1
           });
+        }
+        if (window.utmify && typeof window.utmify.track === "function") {
+          window.utmify.track("InitiateCheckout", { value: value, currency: "BRL" });
         }
       });
     });
