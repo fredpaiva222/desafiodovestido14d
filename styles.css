@@ -1199,6 +1199,23 @@ img { max-width: 100%; display: block; }
   background: linear-gradient(135deg, #C4973B, #E8C56D);
   color: #3B2A24;
 }
+/* Imagem do bundle no topo do card de oferta */
+.mega-bundle-img {
+  margin: -12px -12px 18px;
+  border-radius: var(--r-md);
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  background: linear-gradient(135deg, #F5F0E8 0%, #E8DFD1 100%);
+}
+.mega-bundle-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+@media (max-width: 480px) {
+  .mega-bundle-img { margin: -8px -8px 14px; aspect-ratio: 16 / 9; }
+}
 .mega-title {
   font-size: 22px;
   font-weight: 900;
@@ -2074,6 +2091,14 @@ a.cta-btn {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+/* Card de módulo sem imagem (ex: Módulo 7) — body com padding generoso */
+.element-v-card-no-img .element-v-body {
+  padding: 28px 22px;
+}
+.element-v-card-no-img {
+  background: linear-gradient(135deg, #FFF8EC 0%, #F5EBD4 100%);
+  border-color: #E8D9B5;
 }
 .element-v-body {
   padding: 18px 20px;
