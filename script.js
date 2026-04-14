@@ -137,67 +137,18 @@
     trackFunnelStep(screenKey, index);
   }
 
-  // ========== FUNNEL TRACKING (DEDUPLICADO) ==========
-  // Guarda quais eventos padrão já dispararam nesta sessão (evita duplicação)
-  const _firedEvents = new Set();
+  // ========== FUNNEL TRACKING (so UTMify · fonte unica) ==========
+  // Meta Pixel nativo foi REMOVIDO — UTMify agora eh a unica fonte de tracking
+  // pra evitar duplicacao de eventos Purchase (pixel + CAPI + fbq = 3x)
 
   function trackFunnelStep(screenKey, stepIndex) {
     const eventName = "QuizStep_" + screenKey;
-    const payload = { step: screenKey, step_number: stepIndex, content_name: "Desentupidor Abdominal Quiz" };
-
-    // Meta Pixel — dispara eventos custom pra cada passo (custom é ok duplicar)
-    if (typeof fbq === "function") {
-      fbq("trackCustom", eventName, payload);
-      // Não dispara QuizStep generico - evita duplicacao no events manager
-    }
+    const payload = { step: screenKey, step_number: stepIndex };
 
     // UTMify custom event (se o SDK suportar)
     if (window.utmify && typeof window.utmify.track === "function") {
       window.utmify.track(eventName, payload);
     }
-
-    // EVENTOS PADRÃO META — com deduplicação
-    // Só dispara UMA vez por evento por sessao
-    if (screenKey === "splash" && !_firedEvents.has("ViewContent_Quiz")) {
-      _firedEvents.add("ViewContent_Quiz");
-      fireStandardEvent("ViewContent", {
-        content_name: "Desentupidor Abdominal - Quiz Start",
-        content_type: "quiz_start"
-      });
-    }
-
-    // UM Lead apenas — disparado quando completa o quiz (chega na oferta)
-    // Remove o "Lead Mid" em break2 pra não inflar
-    if (screenKey === "offer" && !_firedEvents.has("Lead_Complete")) {
-      _firedEvents.add("Lead_Complete");
-      fireStandardEvent("Lead", {
-        content_name: "Desentupidor Abdominal - Quiz Complete",
-        value: 0,
-        currency: "BRL"
-      });
-    }
-
-    // Marcos extras (custom — pra análise granular, nao inflam padrao)
-    if (screenKey === "break1") fireMilestone("QuizBreak1");
-    if (screenKey === "break2") fireMilestone("QuizBreak2_Mecanismo");
-    if (screenKey === "break3") fireMilestone("QuizBreak3");
-    if (screenKey === "break4") fireMilestone("QuizBreak4_Diagnostico");
-    if (screenKey === "loading") fireMilestone("QuizLoading");
-    if (screenKey === "scratch") fireMilestone("QuizScratch");
-    if (screenKey === "offer") fireMilestone("QuizComplete_ViewOffer");
-  }
-
-  function fireStandardEvent(eventName, payload) {
-    if (typeof fbq === "function") fbq("track", eventName, payload || {});
-  }
-
-  function fireMilestone(name) {
-    if (typeof fbq === "function") fbq("trackCustom", name);
-  }
-
-  // Helper pra gerar eventID unico (deduplica entre browser e server-side)
-  function generateEventId() {
-    return 'dna_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
   }
 
   function updateProgress() {
@@ -652,40 +603,10 @@
       btn.addEventListener("click", () => {
         const value = parseFloat(btn.dataset.checkout) || 47;
 
-        // Gera eventID unico pra essa compra (deduplica Pixel browser x Lastlink server-side)
-        const eventId = generateEventId();
-        const checkoutUrl = btn.getAttribute("href") || "";
-
-        // Grava o eventID em localStorage pra Lastlink/UTMify poderem casar se usarem
-        try {
-          localStorage.setItem("last_purchase_event_id", eventId);
-          localStorage.setItem("last_purchase_value", String(value));
-          localStorage.setItem("last_purchase_ts", String(Date.now()));
-        } catch {}
-
-        // Anexa o eventID na URL do Lastlink como parametro extra (rastreavel)
-        if (checkoutUrl.includes("lastlink.com")) {
-          try {
-            const url = new URL(checkoutUrl);
-            if (!url.searchParams.has("event_id")) {
-              url.searchParams.set("event_id", eventId);
-              btn.setAttribute("href", url.toString());
-            }
-          } catch {}
-        }
-
-        if (typeof fbq === "function") {
-          fbq("track", "InitiateCheckout", {
-            content_name: "Desentupidor Abdominal",
-            content_category: "Checkout",
-            content_ids: ["desentupidor-abdominal-14d"],
-            value: value,
-            currency: "BRL",
-            num_items: 1
-          }, { eventID: eventId });
-        }
+        // UTMify registra o clique (o InitiateCheckout real sera gerado pelo
+        // pixel do Lastlink + webhook CAPI — fonte unica, sem duplicacao)
         if (window.utmify && typeof window.utmify.track === "function") {
-          window.utmify.track("InitiateCheckout", { value: value, currency: "BRL", event_id: eventId });
+          window.utmify.track("InitiateCheckout", { value: value, currency: "BRL" });
         }
       });
     });
