@@ -8,6 +8,70 @@
   const TIMER_DURATION_S = 600; // 10 minutes
   const STORAGE_KEY = "dv14d_quiz";
 
+  // ========== UTM PROPAGATION PRA LASTLINK ==========
+  // UTMify nao suporta Lastlink nativamente. Precisamos injetar manualmente
+  // as UTMs da landing nos links de checkout pra UTMify trackear via webhook.
+  const UTM_STORAGE_KEY = "desentupidor_utms_v1";
+
+  function captureAndStoreUTMs() {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const utms = {};
+      const keys = [
+        "utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term",
+        "utm_id", "fbclid", "gclid", "ttclid", "xcod", "sck", "src"
+      ];
+      let hasAny = false;
+      keys.forEach(k => {
+        const v = params.get(k);
+        if (v) { utms[k] = v; hasAny = true; }
+      });
+      if (hasAny) {
+        localStorage.setItem(UTM_STORAGE_KEY, JSON.stringify(utms));
+      }
+    } catch {}
+  }
+
+  function getStoredUTMs() {
+    try {
+      const raw = localStorage.getItem(UTM_STORAGE_KEY);
+      return raw ? JSON.parse(raw) : {};
+    } catch { return {}; }
+  }
+
+  function injectUTMsIntoCheckoutLinks() {
+    const utms = getStoredUTMs();
+    const utmKeys = Object.keys(utms);
+    if (utmKeys.length === 0) return;
+
+    const qs = new URLSearchParams();
+    utmKeys.forEach(k => qs.set(k, utms[k]));
+
+    // Tambem setar src/sck/xcod pra garantir leitura do Lastlink
+    if (utms.utm_source && !qs.has("src")) qs.set("src", utms.utm_source);
+    if (utms.utm_campaign && !qs.has("sck")) qs.set("sck", utms.utm_campaign);
+
+    document.querySelectorAll('a[href*="lastlink.com"]').forEach(a => {
+      try {
+        const url = new URL(a.href);
+        // Adiciona UTMs sem sobrescrever as que ja existirem
+        qs.forEach((value, key) => {
+          if (!url.searchParams.has(key)) url.searchParams.set(key, value);
+        });
+        a.href = url.toString();
+      } catch {}
+    });
+  }
+
+  // Captura UTMs assim que a pagina carrega
+  captureAndStoreUTMs();
+
+  // Injeta nos links de checkout no load + toda vez que o DOM mudar (quiz dinamico)
+  document.addEventListener("DOMContentLoaded", injectUTMsIntoCheckoutLinks);
+  // Re-injeta quando a tela de oferta abre (eh criada dinamicamente no quiz)
+  const utmObserver = new MutationObserver(() => injectUTMsIntoCheckoutLinks());
+  utmObserver.observe(document.documentElement, { childList: true, subtree: true });
+
   // ========== STATE ==========
   const state = {
     step: 0,
